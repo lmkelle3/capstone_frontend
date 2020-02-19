@@ -1,17 +1,25 @@
 import React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import TopNav from "./components/Navigation/TopNav";
+import SideNav from "./components/Navigation/SideNav";
+import ClaimsMain from "./components/Claims/ClaimsMain";
+
+import { Row, Col } from "reactstrap";
 
 function App() {
   return (
-    <Container maxWidth="sm">
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create React App v4-beta example
-        </Typography>
-      </Box>
-    </Container>
+    <Row>
+      <Col>
+        <TopNav />
+        <Row>
+          <Col xs="3">
+            <SideNav />
+          </Col>
+          <Col sm="6">
+            <ClaimsMain />
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   );
 }
 
