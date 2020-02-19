@@ -11,3 +11,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+
+const ClaimsList = () => {
+  const claims = useSelector(state => state.claims);
+};

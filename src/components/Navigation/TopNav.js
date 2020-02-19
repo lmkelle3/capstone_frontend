@@ -12,18 +12,14 @@ const TopNav = props => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarBrand href="/">Oopsie Insurance Co</NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink href="/components/">Components</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://github.com/reactstrap/reactstrap">
-              GitHub
-            </NavLink>
+            <NavLink href="/claims">Claims</NavLink>
           </NavItem>
         </Nav>
-        <NavbarText>Simple Text</NavbarText>
+        <NavbarText>Welcome, John Doe</NavbarText>
+        <NavLink href="/profile/"> Go To Profile</NavLink>
       </Navbar>
     </div>
   );
