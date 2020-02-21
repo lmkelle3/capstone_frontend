@@ -8,7 +8,7 @@ import PoliceReport from "./PoliceReport";
 import Price from "./Price";
 import PayInfo from "./PayInfo";
 
-import { Route, useLocation, Link } from "react-router-dom";
+import { Switch, Route, useLocation, Link } from "react-router-dom";
 import { addClaim } from "../../../store/Claims/actions";
 import { useDispatch } from "react-redux";
 
@@ -70,14 +70,25 @@ const NewClaimForm = () => {
           </li>
         </ul>
       </nav>
-      <Route exact path="/step1" component={LossInput} />
+      <Switch>
+        <Route path="/step1">
+          <LossInput />
+        </Route>
+        <Route exact path="/step2">
+          <Date />
+        </Route>
+        <Route path="/step3">
+          <PolicyType />
+        </Route>
+      </Switch>
+      {/* <Route exact path="/step1" component={LossInput} />
       <Route exact path="/step2" component={Date} />
       <Route exact path="/step3" component={PolicyType} />
       <Route exact path="/step4" component={ItemType} />
       <Route exact path="/step5" component={PoliceReport} />
       <Route exact path="/step6" component={Price} />
       <Route exact path="/step7" component={PayInfo} />
-      <Route exact path="/step8" component={ClaimComplete} />
+      <Route exact path="/step8" component={ClaimComplete} /> */}
     </div>
   );
 };
