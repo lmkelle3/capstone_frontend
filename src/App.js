@@ -4,8 +4,9 @@ import SideNav from "./components/Navigation/SideNav";
 import ClaimsOverview from "./components/Claims/ClaimsOverview";
 import MessageMain from "./components/ComCenter/MessageMain";
 import Login from "./components/Login";
+import NewClaimForm from "./components/Claims/ClaimsForm/NewClaimForm";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Row, Col } from "reactstrap";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route exact path="/claims" component={ClaimsOverview} />
             <Route exact path="/messages" component={MessageMain} />
+            <Route exact path="/form" component={NewClaimForm} />
           </Col>
         </Row>
       </Col>
