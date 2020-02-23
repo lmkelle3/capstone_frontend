@@ -62,15 +62,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ClaimComplete = props => {
-  //const idStr = useParams()
-  //const id = Number(idStr.id)
-
   const classes = useStyles();
   const theme = useTheme();
 
   const claim = props.claim;
   const prevStep = props.prevStep;
-  const pictures = props.pictures;
   const step = props.step;
   const selectedDate = props.selectedDate;
 
@@ -80,8 +76,6 @@ const ClaimComplete = props => {
   //Picture area
   //State and methods for picture stepper
   const [activeStep, setActiveStep] = useState(0);
-
-  const maxSteps = pictures !== "pending" ? pictures.length : 0;
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -107,25 +101,15 @@ const ClaimComplete = props => {
 
             {/*Picture area*/}
 
-            <CardMedia
-              className={classes.media}
-              image={pictures[activeStep]}
-              title={claim.title}
-            />
+            <CardMedia className={classes.media} title={claim.title} />
 
             <MobileStepper
               className={classes.stepper}
-              steps={maxSteps}
               position="static"
               variant="text"
               activeStep={activeStep}
               nextButton={
-                <Button
-                  color="inherit"
-                  size="small"
-                  onClick={handleNext}
-                  disabled={activeStep === maxSteps - 1}
-                >
+                <Button color="inherit" size="small" onClick={handleNext}>
                   Next
                   {theme.direction === "rtl" ? (
                     <KeyboardArrowLeft />

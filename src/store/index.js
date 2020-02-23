@@ -1,8 +1,11 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
+import claimsReducer from "../store/Claims/reducer";
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  claims: claimsReducer
+});
 
 const middleware = [thunk, logger];
 
