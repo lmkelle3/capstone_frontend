@@ -127,7 +127,7 @@ const ClaimsMain = props => {
   const [zipCode, setZipCode] = useState("");
   const [step, setStep] = useState(1);
 
-  // New sale object
+  // New claim object
   const newClaim = {
     user_id: 8,
     title: title,
