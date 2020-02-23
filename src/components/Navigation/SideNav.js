@@ -13,7 +13,12 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   paper: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
+    padding: theme.spacing(3, 2),
+    marginTop: 10,
+    color: theme.palette.text.primary,
+    textAlign: "center",
+    backgroundColor: theme.palette.info.main
   }
 }));
 

@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import { format } from "date-fns";
-import {
-  Paper,
-  Typography,
-  Grid,
-  Button,
-  MobileStepper,
-  CardMedia
-} from "@material-ui/core";
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
+import { Paper, Typography, Grid, Button, CardMedia } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 //component styles
@@ -32,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     height: 50,
     paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.primary
   },
   img: {
     height: 255,
@@ -46,18 +37,21 @@ const useStyles = makeStyles(theme => ({
     marginTop: 10,
     color: theme.palette.text.primary,
     textAlign: "center",
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.info.light
   },
   paper2: {
     padding: theme.spacing(3, 2),
     marginTop: 10,
     color: theme.palette.text.primary,
     textAlign: "center",
-    backgroundColor: theme.palette.secondary.light
+    backgroundColor: theme.palette.primary
   },
-  stepper: {
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.secondary.contrastText
+  paper3: {
+    padding: theme.spacing(3, 2),
+    marginTop: 10,
+    color: theme.palette.text.primary,
+    textAlign: "center",
+    backgroundColor: theme.palette.info.main
   }
 }));
 
@@ -68,89 +62,59 @@ const ClaimComplete = props => {
   const claim = props.claim;
   const prevStep = props.prevStep;
   const step = props.step;
-  const selectedDate = props.selectedDate;
 
-  //formatting date
-  let claimDate = format(new Date(selectedDate), "MM/dd/yyyy hh:mm a");
-
-  //Picture area
-  //State and methods for picture stepper
-  const [activeStep, setActiveStep] = useState(0);
-
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
-  const { title, details, user_id, location, date_time } = props.claim;
+  const {
+    lossInput,
+    claimDate,
+    policyType,
+    itemType,
+    policeReport,
+    price,
+    payInfo
+  } = props.claim;
 
   return (
     <Paper className={classes.paper1}>
-      <Typography variant="h2">Confirm your claim</Typography>
+      <Paper className={classes.paper3}>
+        <Typography variant="h2">Confirm claim details:</Typography>
+      </Paper>
       <Grid container spacing={3}>
         <Grid item sm={12}>
           <Paper className={classes.paper2}>
             {/*Header */}
             <Typography variant="h1">
               {/*Title */}
-              {claim.title}
+              {claim.lossInput}
             </Typography>
-
             {/*Picture area*/}
-
-            <CardMedia className={classes.media} title={claim.title} />
-
-            <MobileStepper
-              className={classes.stepper}
-              position="static"
-              variant="text"
-              activeStep={activeStep}
-              nextButton={
-                <Button color="inherit" size="small" onClick={handleNext}>
-                  Next
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowLeft />
-                  ) : (
-                    <KeyboardArrowRight />
-                  )}
-                </Button>
-              }
-              backButton={
-                <Button
-                  color="inherit"
-                  size="small"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}
-                >
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowRight />
-                  ) : (
-                    <KeyboardArrowLeft />
-                  )}
-                  Back
-                </Button>
-              }
-            />
+            <Typography variant="body1">{claim.claimDate}</Typography>
           </Paper>
         </Grid>
         <Grid item sm={4}>
           {/*Details*/}
           <Paper className={classes.paper}>
-            <Typography variant="body1">{claim.details}</Typography>
+            <Typography variant="body1">{claim.policyType}</Typography>
           </Paper>
         </Grid>
         <Grid item sm={4}>
           {/*Location*/}
           <Paper className={classes.paper}>
-            <Typography variant="body1">{claim.location}</Typography>
+            <Typography variant="body1">{claim.itemType}</Typography>
           </Paper>
         </Grid>
         <Grid item sm={4}>
           <Paper className={classes.paper}>
-            <Typography variant="body1">{claimDate}</Typography>
+            <Typography variant="body1">{claim.policeReport}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item sm={4}>
+          <Paper className={classes.paper}>
+            <Typography variant="body1">{claim.price}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item sm={4}>
+          <Paper className={classes.paper}>
+            <Typography variant="body1">{claim.payInfo}</Typography>
           </Paper>
         </Grid>
       </Grid>

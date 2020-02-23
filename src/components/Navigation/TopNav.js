@@ -16,6 +16,10 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1
+  },
+  colorPrimary: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText
   }
 }));
 
@@ -23,7 +27,7 @@ const TopNav = props => {
   const classes = useStyles();
   return (
     <div>
-      <AppBar position="static">
+      <AppBar className={classes.colorPrimary} position="static">
         <Toolbar>
           <IconButton
             edge="start"
