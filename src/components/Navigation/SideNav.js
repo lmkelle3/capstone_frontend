@@ -1,30 +1,24 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem } from "reactstrap";
+import ClaimsCenter from "../Claims/ClaimsCenter";
 
 const SideNav = props => {
   return (
-    <div>
+    <div className="mt-2">
       <Card>
         <ListGroup>
-          <ListGroupItem active tag="button" action>
-            Cras justo odio
+          <ListGroupItem tag="a" href="/" action>
+            Home
           </ListGroupItem>
           <ListGroupItem tag="button" action>
-            Dapibus ac facilisis in
+            Profile
           </ListGroupItem>
-          <ListGroupItem tag="button" action>
-            Morbi leo risus
-          </ListGroupItem>
-          <ListGroupItem tag="button" action>
-            Porta ac consectetur ac
-          </ListGroupItem>
-          <ListGroupItem disabled tag="button" action>
-            Vestibulum at eros
+          <ListGroupItem tag="a" href="/claims" action>
+            Claims Center
           </ListGroupItem>
         </ListGroup>
       </Card>
     </div>
   );
 };
-
 export default SideNav;

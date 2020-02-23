@@ -11,8 +11,8 @@ import {
 const TopNav = props => {
   return (
     <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Oopsie Insurance Co</NavbarBrand>
+      <Navbar color="primary" light expand="md">
+        <NavbarBrand href="/">Oopsie-Daisy Insurance Co</NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavLink href="/claims">Claims</NavLink>
