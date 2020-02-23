@@ -140,166 +140,163 @@ const ClaimsMain = props => {
   const [age, setAge] = React.useState("");
   const handleChange = event => {
     setAge(event.target.value);
-
-    // Component methods
-    const handleDateChange = date => {
-      setSelectedDate(date);
-    };
-
-    const nextStep = () => {
-      setStep(step + 1);
-    };
-
-    const prevStep = () => {
-      setStep(step - 1);
-    };
-
-    const handleSubmit = e => {
-      e.preventDefault();
-
-      dispatch(addClaim(newClaim));
-
-      history.push("/");
-    };
-
-    switch (step) {
-      case 1:
-        return (
-          <Fragment>
-            <Paper className={classes.root}>
-              <Typography variant="h5" component="h3">
-                Add your claim using the form below
-              </Typography>
-              <NewClaimForm
-                title={title}
-                setTitle={setTitle}
-                details={details}
-                setDetails={setDetails}
-                address={address}
-                setAddress={setAddress}
-                zipCode={zipCode}
-                setZipCode={setZipCode}
-                clickedPicBtn={clickedPicBtn}
-                setClickedPicBtn={setClickedPicBtn}
-                selectedDate={selectedDate}
-                handleDateChange={handleDateChange}
-                handleSubmit={handleSubmit}
-              />
-            </Paper>
-            {/* Form Inputs */}
-            <FormControl className={classes.margin}>
-              <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
-              <BootstrapInput id="demo-customized-textbox" />
-            </FormControl>
-            <FormControl className={classes.margin}>
-              <InputLabel id="demo-customized-select-label">Age</InputLabel>
-              <Select
-                labelId="demo-customized-select-label"
-                id="demo-customized-select"
-                value={age}
-                onChange={handleChange}
-                input={<BootstrapInput />}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl className={classes.margin}>
-              <InputLabel htmlFor="demo-customized-select-native">
-                Age
-              </InputLabel>
-              <NativeSelect
-                id="demo-customized-select-native"
-                value={age}
-                onChange={handleChange}
-                input={<BootstrapInput />}
-              >
-                <option value="" />
-                <option value={10}>Ten</option>
-                <option value={20}>Twenty</option>
-                <option value={30}>Thirty</option>
-              </NativeSelect>
-            </FormControl>
-            {/* Form Inputs End*/}
-            <MobileStepper
-              variant="progress"
-              steps={3}
-              position="static"
-              activeStep={step}
-              className={classes.stepper}
-              nextButton={
-                <Button size="small" onClick={nextStep} disabled={step === 3}>
-                  Preview
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowLeft />
-                  ) : (
-                    <KeyboardArrowRight />
-                  )}
-                </Button>
-              }
-              backButton={
-                <Button size="small" onClick={prevStep} disabled={step === 1}>
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowRight />
-                  ) : (
-                    <KeyboardArrowLeft />
-                  )}
-                  Back
-                </Button>
-              }
-            />
-          </Fragment>
-        );
-      case 2:
-        return (
-          <Fragment>
-            <ClaimComplete
-              prevStep={prevStep}
-              claim={newClaim}
-              step={step}
-              selectedDate={String(selectedDate)}
-            />
-            <MobileStepper
-              variant="progress"
-              steps={3}
-              position="static"
-              activeStep={step}
-              color="secondary"
-              className={classes.stepper}
-              nextButton={
-                <Button
-                  type="submit"
-                  size="small"
-                  onClick={handleSubmit}
-                  disabled={step === 3}
-                >
-                  Submit
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowLeft />
-                  ) : (
-                    <KeyboardArrowRight />
-                  )}
-                </Button>
-              }
-              backButton={
-                <Button size="small" onClick={prevStep} disabled={step === 1}>
-                  {theme.direction === "rtl" ? (
-                    <KeyboardArrowRight />
-                  ) : (
-                    <KeyboardArrowLeft />
-                  )}
-                  Back
-                </Button>
-              }
-            />
-          </Fragment>
-        );
-    }
   };
+  // Component methods
+  const handleDateChange = date => {
+    setSelectedDate(date);
+  };
+
+  const nextStep = () => {
+    setStep(step + 1);
+  };
+
+  const prevStep = () => {
+    setStep(step - 1);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    dispatch(addClaim(newClaim));
+
+    history.push("/");
+  };
+
+  switch (step) {
+    case 1:
+      return (
+        <Fragment>
+          <Paper className={classes.root}>
+            <Typography variant="h5" component="h3">
+              Add your claim using the form below
+            </Typography>
+            <NewClaimForm
+              title={title}
+              setTitle={setTitle}
+              details={details}
+              setDetails={setDetails}
+              address={address}
+              setAddress={setAddress}
+              zipCode={zipCode}
+              setZipCode={setZipCode}
+              clickedPicBtn={clickedPicBtn}
+              setClickedPicBtn={setClickedPicBtn}
+              selectedDate={selectedDate}
+              handleDateChange={handleDateChange}
+              handleSubmit={handleSubmit}
+            />
+          </Paper>
+          {/* Form Inputs */}
+          <FormControl className={classes.margin}>
+            <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
+            <BootstrapInput id="demo-customized-textbox" />
+          </FormControl>
+          <FormControl className={classes.margin}>
+            <InputLabel id="demo-customized-select-label">Age</InputLabel>
+            <Select
+              labelId="demo-customized-select-label"
+              id="demo-customized-select"
+              value={age}
+              onChange={handleChange}
+              input={<BootstrapInput />}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl className={classes.margin}>
+            <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+            <NativeSelect
+              id="demo-customized-select-native"
+              value={age}
+              onChange={handleChange}
+              input={<BootstrapInput />}
+            >
+              <option value="" />
+              <option value={10}>Ten</option>
+              <option value={20}>Twenty</option>
+              <option value={30}>Thirty</option>
+            </NativeSelect>
+          </FormControl>
+          {/* Form Inputs End*/}
+          <MobileStepper
+            variant="progress"
+            steps={3}
+            position="static"
+            activeStep={step}
+            className={classes.stepper}
+            nextButton={
+              <Button size="small" onClick={nextStep} disabled={step === 3}>
+                Preview
+                {theme.direction === "rtl" ? (
+                  <KeyboardArrowLeft />
+                ) : (
+                  <KeyboardArrowRight />
+                )}
+              </Button>
+            }
+            backButton={
+              <Button size="small" onClick={prevStep} disabled={step === 1}>
+                {theme.direction === "rtl" ? (
+                  <KeyboardArrowRight />
+                ) : (
+                  <KeyboardArrowLeft />
+                )}
+                Back
+              </Button>
+            }
+          />
+        </Fragment>
+      );
+    case 2:
+      return (
+        <Fragment>
+          <ClaimComplete
+            prevStep={prevStep}
+            claim={newClaim}
+            step={step}
+            selectedDate={String(selectedDate)}
+          />
+          <MobileStepper
+            variant="progress"
+            steps={3}
+            position="static"
+            activeStep={step}
+            color="secondary"
+            className={classes.stepper}
+            nextButton={
+              <Button
+                type="submit"
+                size="small"
+                onClick={handleSubmit}
+                disabled={step === 3}
+              >
+                Submit
+                {theme.direction === "rtl" ? (
+                  <KeyboardArrowLeft />
+                ) : (
+                  <KeyboardArrowRight />
+                )}
+              </Button>
+            }
+            backButton={
+              <Button size="small" onClick={prevStep} disabled={step === 1}>
+                {theme.direction === "rtl" ? (
+                  <KeyboardArrowRight />
+                ) : (
+                  <KeyboardArrowLeft />
+                )}
+                Back
+              </Button>
+            }
+          />
+        </Fragment>
+      );
+  }
 };
 
 export default ClaimsMain;

@@ -1,26 +1,44 @@
-import React, { useState } from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText
-} from "reactstrap";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1
+  }
+}));
 
 const TopNav = props => {
+  const classes = useStyles();
   return (
     <div>
-      <Navbar color="primary" light expand="md">
-        <NavbarBrand href="/">Oopsie-Daisy Insurance Co</NavbarBrand>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <NavLink href="/claims">Claims</NavLink>
-          </NavItem>
-        </Nav>
-        <NavbarText>Welcome, John Doe</NavbarText>
-        <NavLink href="/profile/"> Go To Profile</NavLink>
-      </Navbar>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" className={classes.title}>
+            Oopsie-Daisy Insurance Co.
+          </Typography>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 };
