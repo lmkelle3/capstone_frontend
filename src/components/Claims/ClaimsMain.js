@@ -103,58 +103,58 @@ const ClaimsMain = props => {
   };
 
   switch (step) {
-    case 1:
-      return (
-        <Fragment>
-          <Paper className={classes.root}>
-            <Typography variant="h5" component="h3">
-              Add your claim using the form below
-            </Typography>
-            <NewClaimForm
-              title={title}
-              setTitle={setTitle}
-              details={details}
-              setDetails={setDetails}
-              address={address}
-              setAddress={setAddress}
-              zipCode={zipCode}
-              setZipCode={setZipCode}
-              clickedPicBtn={clickedPicBtn}
-              setClickedPicBtn={setClickedPicBtn}
-              selectedDate={selectedDate}
-              handleDateChange={handleDateChange}
-              handleSubmit={handleSubmit}
-            />
-          </Paper>
-          <MobileStepper
-            variant="progress"
-            steps={3}
-            position="static"
-            activeStep={step}
-            className={classes.stepper}
-            nextButton={
-              <Button size="small" onClick={nextStep} disabled={step === 3}>
-                Next
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowLeft />
-                ) : (
-                  <KeyboardArrowRight />
-                )}
-              </Button>
-            }
-            backButton={
-              <Button size="small" onClick={prevStep} disabled={step === 1}>
-                {theme.direction === "rtl" ? (
-                  <KeyboardArrowRight />
-                ) : (
-                  <KeyboardArrowLeft />
-                )}
-                Back
-              </Button>
-            }
-          />
-        </Fragment>
-      );
+    // case 1:
+    //   return (
+    //     <Fragment>
+    //       <Paper className={classes.root}>
+    //         <Typography variant="h5" component="h3">
+    //           Add your claim using the form below
+    //         </Typography>
+    //         <NewClaimForm
+    //           title={title}
+    //           setTitle={setTitle}
+    //           details={details}
+    //           setDetails={setDetails}
+    //           address={address}
+    //           setAddress={setAddress}
+    //           zipCode={zipCode}
+    //           setZipCode={setZipCode}
+    //           clickedPicBtn={clickedPicBtn}
+    //           setClickedPicBtn={setClickedPicBtn}
+    //           selectedDate={selectedDate}
+    //           handleDateChange={handleDateChange}
+    //           handleSubmit={handleSubmit}
+    //         />
+    //       </Paper>
+    //       <MobileStepper
+    //         variant="progress"
+    //         steps={3}
+    //         position="static"
+    //         activeStep={step}
+    //         className={classes.stepper}
+    //         nextButton={
+    //           <Button size="small" onClick={nextStep} disabled={step === 3}>
+    //             Next
+    //             {theme.direction === "rtl" ? (
+    //               <KeyboardArrowLeft />
+    //             ) : (
+    //               <KeyboardArrowRight />
+    //             )}
+    //           </Button>
+    //         }
+    //         backButton={
+    //           <Button size="small" onClick={prevStep} disabled={step === 1}>
+    //             {theme.direction === "rtl" ? (
+    //               <KeyboardArrowRight />
+    //             ) : (
+    //               <KeyboardArrowLeft />
+    //             )}
+    //             Back
+    //           </Button>
+    //         }
+    //       />
+    //     </Fragment>
+    //   );
     case 2:
       return (
         <Fragment>

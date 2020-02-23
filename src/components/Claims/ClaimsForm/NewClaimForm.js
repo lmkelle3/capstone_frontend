@@ -1,25 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  Paper,
-  TextField,
-  Typography,
-  Grid,
-  Button,
-  Avatar,
-  IconButton,
-  GridListTile,
-  GridListTileBar,
-  GridList
-} from "@material-ui/core";
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutlined";
-import CloseIcon from "@material-ui/icons/Close";
+import { TextField, Typography, Grid } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker
 } from "@material-ui/pickers";
-import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 // LossInput imports
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";

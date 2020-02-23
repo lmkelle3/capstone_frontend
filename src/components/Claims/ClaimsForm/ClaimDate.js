@@ -1,11 +1,10 @@
 import "date-fns";
-import React, { useState } from "react";
+import React from "react";
 import { Grid } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import { Row, Col, Button } from "reactstrap";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
