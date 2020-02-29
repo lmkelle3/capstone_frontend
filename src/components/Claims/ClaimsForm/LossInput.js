@@ -1,8 +1,129 @@
 import React from "react";
-import { Card, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { TextField, Typography, Grid } from "@material-ui/core";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
+import InputBase from "@material-ui/core/InputBase";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+
+// Form Styling
+const useStyles = makeStyles(theme => ({
+  root: {
+    "&:hover": {
+      backgroundColor: "transparent"
+    }
+  },
+  icon: {
+    borderRadius: "50%",
+    width: 16,
+    height: 16,
+    boxShadow:
+      "inset 0 0 0 1px rgba(16,22,26,.2), inset 0 -1px 0 rgba(16,22,26,.1)",
+    backgroundColor: "#f5f8fa",
+    backgroundImage:
+      "linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0))",
+    "$root.Mui-focusVisible &": {
+      outline: "2px auto rgba(19,124,189,.6)",
+      outlineOffset: 2
+    },
+    "input:hover ~ &": {
+      backgroundColor: "#ebf1f5"
+    },
+    "input:disabled ~ &": {
+      boxShadow: "none",
+      background: "rgba(206,217,224,.5)"
+    }
+  },
+  checkedIcon: {
+    backgroundColor: "#137cbd",
+    backgroundImage:
+      "linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))",
+    "&:before": {
+      display: "block",
+      width: 16,
+      height: 16,
+      backgroundImage: "radial-gradient(#fff,#fff 28%,transparent 32%)",
+      content: '""'
+    },
+    "input:hover ~ &": {
+      backgroundColor: "#106ba3"
+    }
+  },
+  ///Form Styling
+  form: {
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1)
+    },
+    marginTop: 10
+  },
+  title: {
+    margin: theme.spacing(1)
+  },
+  address: {
+    margin: theme.spacing(1),
+    width: 350
+  },
+  details: {
+    width: 280
+  },
+  upBtn: {
+    marginLeft: 10
+  },
+  avatar: {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+    margin: theme.spacing(0.5)
+  },
+  avatarDiv: {
+    display: "flex",
+    padding: theme.spacing(1)
+  },
+  icon: {
+    color: theme.palette.secondary.light
+  }
+}));
+
+//Inputs Styling
+const BootstrapInput = withStyles(theme => ({
+  root: {
+    "label + &": {
+      marginTop: theme.spacing(3)
+    }
+  },
+  input: {
+    borderRadius: 4,
+    position: "relative",
+    backgroundColor: theme.palette.background.paper,
+    border: "1px solid #ced4da",
+    fontSize: 16,
+    padding: "10px 26px 10px 12px",
+    transition: theme.transitions.create(["border-color", "box-shadow"]),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(","),
+    "&:focus": {
+      borderRadius: 4,
+      borderColor: "#80bdff",
+      boxShadow: "0 0 0 0.2rem rgba(0,123,255,.25)"
+    }
+  }
+}))(InputBase);
 
 const LossInput = () => {
   //   const dispatch = useDispatch();
+  const classes = useStyles();
 
   const [inputs, setInputs] = React.useState({
     category: "",
@@ -25,58 +146,63 @@ const LossInput = () => {
 
   return (
     <div>
-      <Card color="light" className="m-3">
-        <h3 className="mt-4 ml-2">
-          Select the appropriate information below and enter a description for
-          your loss.
-        </h3>
-        <Form className="mt-2 ml-2 mr-2">
-          <FormGroup>
-            <Label for="category">Select Loss Category:</Label>
-            <Input
-              type="select"
-              name="category"
-              value={inputs.category}
+      <Grid container direction="row" justify="center" alignItems="center">
+        <Grid item xs={12}>
+          <Typography variant="h5" component="h3">
+            Please enter your Loss Type and Description of your Loss.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl className={classes.margin}>
+            <InputLabel id="demo-customized-select-label">
+              Loss Category
+            </InputLabel>
+            <Select
+              labelId="demo-customized-select-label"
+              id="demo-customized-select"
+              value={inputs.lossCategory}
               onChange={handleChange}
-              id="category"
+              input={<BootstrapInput />}
             >
-              <option disabled>Wind</option>
-              <option disabled>Hail</option>
-              <option disabled>Fire</option>
-              <option>Burglary/Theft</option>
-              <option>Other</option>
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="type">Select Loss Type:</Label>
-            <Input
-              type="select"
-              name="type"
-              value={inputs.type}
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem>Lost</MenuItem>
+              <MenuItem>Burglary/Theft</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl className={classes.margin}>
+            <InputLabel htmlFor="demo-customized-select-native">
+              Loss Type
+            </InputLabel>
+            <NativeSelect
+              id="demo-customized-select-native"
+              value={inputs.lossType}
               onChange={handleChange}
-              id="type"
+              input={<BootstrapInput />}
             >
+              <option>Lost and not Found</option>
               <option>Theft</option>
-              <option>Lost and not found</option>
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label for="description">Enter Description:</Label>
-            <Input
-              type="textarea"
-              name="description"
-              value={inputs.description}
+            </NativeSelect>
+          </FormControl>
+        </Grid>
+        <FormControl className={classes.margin}>
+          <Grid item xs={12}>
+            <TextField
+              id="details"
+              label="Enter claim details"
+              value={inputs.claimDetails}
+              variant="outlined"
+              multiline
+              rows="6"
+              className={classes.details}
               onChange={handleChange}
-              id="description"
             />
-          </FormGroup>
-          <FormGroup className="text-center">
-            <Button href="/form/step2" color="primary">
-              Next
-            </Button>
-          </FormGroup>
-        </Form>
-      </Card>
+          </Grid>
+        </FormControl>
+      </Grid>
     </div>
   );
 };

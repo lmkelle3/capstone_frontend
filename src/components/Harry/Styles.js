@@ -1,14 +1,5 @@
-import React from "react";
-import { Typography, Grid } from "@material-ui/core";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import InputBase from "@material-ui/core/InputBase";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-
-// Form Styling
-const useStyles = makeStyles(theme => ({
+export useStyles = makeStyles(theme => ({
+  // ItemType Styling
   root: {
     "&:hover": {
       backgroundColor: "transparent"
@@ -119,47 +110,3 @@ const BootstrapInput = withStyles(theme => ({
     }
   }
 }))(InputBase);
-
-const PolicyType = () => {
-  const classes = useStyles();
-
-  const [inputs, setInputs] = React.useState({
-    category: "",
-    type: "",
-    description: ""
-  });
-
-  const handleChange = e => {
-    let { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value
-    });
-  };
-  return (
-    <div>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Typography variant="h5" component="h3">
-          Please select the applicable policy type.
-        </Typography>
-        <FormControl className={classes.margin}>
-          <InputLabel id="demo-customized-select-label">Policy Type</InputLabel>
-          <Select
-            labelId="demo-customized-select-label"
-            id="demo-customized-select"
-            value={inputs.policyType}
-            onChange={handleChange}
-            input={<BootstrapInput />}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem>Valuable Personal Property</MenuItem>
-          </Select>
-        </FormControl>
-      </Grid>
-    </div>
-  );
-};
-
-export default PolicyType;
