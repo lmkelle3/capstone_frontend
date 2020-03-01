@@ -1,3 +1,5 @@
+/* eslint-disable default-case */
+import "date-fns";
 import React, { useState, Fragment } from "react";
 import {
   Typography,
@@ -30,10 +32,10 @@ import Price from "./Price";
 import PayInfo from "./PayInfo";
 import ClaimComplete from "../ClaimComplete";
 
-//Stepper Styling
+//Grid & Stepper Styling
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%"
+    flexGrow: 1
   },
   backButton: {
     marginRight: theme.spacing(1)
@@ -41,6 +43,11 @@ const useStyles = makeStyles(theme => ({
   instructions: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1)
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
   }
 }));
 
@@ -151,48 +158,58 @@ const NewClaimForm = props => {
   const dispatch = useDispatch();
   return (
     <div className={classes.root}>
-      <Stepper currentStep={currentStep} alternativeLabel>
-        {steps.map(label => (
-          <Step key={label}>
-            <StepLabel>{label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      <div>
-        {currentStep === steps.length ? (
+      <Grid container>
+        <Paper>
+          <Grid item>
+            <Stepper currentStep={currentStep} alternativeLabel>
+              {steps.map(label => (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+          </Grid>
           <div>
-            <Typography className={classes.instructions}>
-              All steps completed
-            </Typography>
-            <Button onClick={handleReset}>Reset</Button>
+            {currentStep === steps.length ? (
+              <div>
+                <Typography className={classes.instructions}>
+                  All steps completed
+                </Typography>
+                <Button onClick={handleReset}>Reset</Button>
+              </div>
+            ) : (
+              <div>
+                <Typography className={classes.instructions}>
+                  {formSteps(currentStep)}
+                </Typography>
+                <div>
+                  <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                  >
+                    <Button
+                      disabled={currentStep === 0}
+                      onClick={prevStep}
+                      className={classes.backButton}
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={nextStep}
+                    >
+                      {currentStep === steps.length - 1 ? "Finish" : "Next"}
+                    </Button>
+                  </Grid>
+                </div>
+              </div>
+            )}
           </div>
-        ) : (
-          <div>
-            <Typography className={classes.instructions}>
-              {formSteps(currentStep)}
-            </Typography>
-            <div>
-              <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-              >
-                <Button
-                  disabled={currentStep === 0}
-                  onClick={prevStep}
-                  className={classes.backButton}
-                >
-                  Back
-                </Button>
-                <Button variant="contained" color="primary" onClick={nextStep}>
-                  {currentStep === steps.length - 1 ? "Finish" : "Next"}
-                </Button>
-              </Grid>
-            </div>
-          </div>
-        )}
-      </div>
+        </Paper>
+      </Grid>
     </div>
   );
 };

@@ -1,12 +1,12 @@
-import "date-fns";
 import React from "react";
-import DateFnsUtils from "@date-io/date-fns";
+import "date-fns";
 import clsx from "clsx";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import InputBase from "@material-ui/core/InputBase";
+import DateFnsUtils from "@date-io/date-fns";
 import { useDispatch } from "react-redux";
 import { TextField, Typography, Grid } from "@material-ui/core";
 import {
@@ -172,55 +172,61 @@ const PoliceReport = props => {
 
   return (
     <div>
-      <Typography variant="h5" component="h3">
-        Please enter your police report details.
-      </Typography>
-      <FormControl component="fieldset">
-        <TextField
-          required
-          id="jurisdiction"
-          label="Jurisdiction Name"
-          value={inputs.jusrisdiction}
-          fullWidth
-          variant="outlined"
-          className={classes.title}
-          onChange={handleChange}
-        />
-
-        <TextField
-          required
-          id="caseNumber"
-          label="Case Number"
-          value={inputs.caseNumber}
-          variant="outlined"
-          className={classes.address}
-          onChange={handleChange}
-        />
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container justify="space-around">
-            <KeyboardDatePicker
-              required
-              margin="normal"
-              id="prDate"
-              label="Report date"
-              format="MM/dd/yyyy"
-              value={inputs.reportDate}
-              onChange={handleDateChange}
-              KeyboardButtonProps={{
-                "aria-label": "change date"
-              }}
-            />
-          </Grid>
-        </MuiPickersUtilsProvider>
-
-        <RadioGroup defaultValue="pr" aria-label="pr" name="customized-radios">
-          <FormControlLabel
-            value="pr"
-            control={<StyledRadio />}
-            label="I do not have a Police Report"
+      <Grid container direction="row" justify="center" alignItems="center">
+        <Typography variant="h5" component="h3">
+          Please enter your police report details.
+        </Typography>
+        <FormControl component="fieldset">
+          <TextField
+            required
+            id="jurisdiction"
+            label="Jurisdiction Name"
+            value={inputs.jusrisdiction}
+            fullWidth
+            variant="outlined"
+            className={classes.title}
+            onChange={handleChange}
           />
-        </RadioGroup>
-      </FormControl>
+
+          <TextField
+            required
+            id="caseNumber"
+            label="Case Number"
+            value={inputs.caseNumber}
+            variant="outlined"
+            className={classes.address}
+            onChange={handleChange}
+          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container justify="space-around">
+              <KeyboardDatePicker
+                required
+                margin="normal"
+                id="prDate"
+                label="Report date"
+                format="MM/dd/yyyy"
+                value={inputs.reportDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change date"
+                }}
+              />
+            </Grid>
+          </MuiPickersUtilsProvider>
+
+          <RadioGroup
+            defaultValue="pr"
+            aria-label="pr"
+            name="customized-radios"
+          >
+            <FormControlLabel
+              value="pr"
+              control={<StyledRadio />}
+              label="I do not have a Police Report"
+            />
+          </RadioGroup>
+        </FormControl>
+      </Grid>
     </div>
   );
 };

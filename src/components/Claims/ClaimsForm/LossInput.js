@@ -147,29 +147,25 @@ const LossInput = () => {
   return (
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={12}>
+        <Grid item>
           <Typography variant="h5" component="h3">
             Please enter your Loss Type and Description of your Loss.
           </Typography>
         </Grid>
         <Grid item xs={12}>
           <FormControl className={classes.margin}>
-            <InputLabel id="demo-customized-select-label">
+            <InputLabel htmlFor="demo-customized-select-native">
               Loss Category
             </InputLabel>
-            <Select
-              labelId="demo-customized-select-label"
-              id="demo-customized-select"
+            <NativeSelect
+              id="demo-customized-select-native"
               value={inputs.lossCategory}
               onChange={handleChange}
               input={<BootstrapInput />}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem>Lost</MenuItem>
-              <MenuItem>Burglary/Theft</MenuItem>
-            </Select>
+              <option>Lost</option>
+              <option>Burglary/Theft</option>
+            </NativeSelect>
           </FormControl>
         </Grid>
         <Grid item xs={12}>

@@ -1,11 +1,11 @@
-import "date-fns";
 import React from "react";
+import "date-fns";
 import { Typography, Grid } from "@material-ui/core";
-import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 const ClaimDate = props => {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
