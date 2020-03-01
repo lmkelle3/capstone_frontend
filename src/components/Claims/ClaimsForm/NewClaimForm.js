@@ -32,7 +32,7 @@ import Price from "./Price";
 import PayInfo from "./PayInfo";
 import ClaimComplete from "../ClaimComplete";
 
-//Grid & Stepper Styling
+///Grid & Stepper Styling///
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-///Stepper Function to Retreive Steps
+///Stepper Function to Retreive Steps///
 function getSteps() {
   return [
     "LossInput",
@@ -65,13 +65,13 @@ function getSteps() {
   ];
 }
 
-//Component Code
+///////////////////////////////////Component Code//////////////////////////////////////
 const NewClaimForm = props => {
   // const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
 
-  ///Function to Implement Switch Case for Form Steps
+  ///Function to Implement Switch Case for Form Steps///
   function formSteps(currentStep) {
     switch (currentStep) {
       case 0:
@@ -93,7 +93,7 @@ const NewClaimForm = props => {
     }
   }
 
-  ///Constants for tracking steps and state
+  /////Constants for tracking Steps/////
   const classes = useStyles();
   const [currentStep, setStep] = useState(0);
   const steps = getSteps();
@@ -110,26 +110,59 @@ const NewClaimForm = props => {
     setStep(1);
   };
 
-  // State
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [clickedPicBtn, setClickedPicBtn] = useState(false);
-  const [title, setTitle] = useState("");
-  const [details, setDetails] = useState("");
-  const [address, setAddress] = useState("");
-  const [zipCode, setZipCode] = useState("");
+  /////////////////FormState///////////////
+
+  //LossInput State
+  const [lossCategory, setLossCategory] = useState("");
+  const [lossType, setLossType] = useState("");
+  const [claimDetails, setClaimDetails] = useState("");
+
+  //ClaimDate State
+  const [claimDate, setClaimDate] = useState(new Date());
+
+  //PolicyType State
+  const [policyType, setPolicyType] = useState("");
+
+  //ItemType State
+  const [scheduled, setScheduled] = useState(false);
+  const [unscheduled, setUnscheduled] = useState(false);
+  const [other, setOther] = useState(false);
+
+  //PoliceReport State
+  const [jusrisdiction, setJurisdiction] = useState("");
+  const [caseNumber, setCaseNumber] = useState("");
+  const [reportDate, setReportDate] = useState(new Date());
+  const [noPr, setNoPr] = useState(false);
+
+  //Price State
+  const [price, setPrice] = useState("");
+
+  //PayInfo State
+  const [payInfo, setPayInfo] = useState("");
 
   // New claim object
   const newClaim = {
     user_id: 8,
-    title: title,
-    details: details,
-    location: `${address}, ${zipCode}`,
-    date_time: selectedDate
+    lossCategory: lossCategory,
+    lossType: lossType,
+    claimDetails: claimDetails,
+    claimDate: claimDate,
+    policyType: policyType,
+    scheduled: scheduled,
+    unscheduled: unscheduled,
+    other: other,
+    jusrisdiction: jusrisdiction,
+    caseNumber: caseNumber,
+    reportDate: reportDate,
+    noPr: noPr,
+    price: price,
+    payInfo: payInfo
   };
 
   // Component methods
   const handleDateChange = date => {
-    setSelectedDate(date);
+    setClaimDate(date);
+    setReportDate(date);
   };
 
   const handleSubmit = e => {
