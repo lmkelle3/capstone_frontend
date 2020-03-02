@@ -60,22 +60,22 @@ const NewClaimForm = props => {
 
   /////////////////FormState///////////////
 
-  const [inputs, setInputs] = React.useState({
-    lossCategory: "",
-    lossType: "",
-    claimDetails: "",
-    claimDate: "claimDate",
-    policyType: "policyType",
-    scheduled: "scheduled",
-    unscheduled: "unscheduled",
-    other: "other",
-    jusrisdiction: "jusrisdiction",
-    caseNumber: "caseNumber",
-    reportDate: "reportDate",
-    noPr: "noPr",
-    price: "price",
-    payInfo: "payInfo"
-  });
+  // const [inputs, setInputs] = React.useState({
+  //   lossCategory: "",
+  //   lossType: "",
+  //   claimDetails: "",
+  //   claimDate: Date,
+  //   policyType: "",
+  //   scheduled: "scheduled",
+  //   unscheduled: "unscheduled",
+  //   other: "other",
+  //   jusrisdiction: "jusrisdiction",
+  //   caseNumber: "caseNumber",
+  //   reportDate: "reportDate",
+  //   noPr: "noPr",
+  //   price: "price",
+  //   payInfo: "payInfo"
+  // });
 
   //LossInput State
   const [lossCategory, setLossCategory] = useState("");

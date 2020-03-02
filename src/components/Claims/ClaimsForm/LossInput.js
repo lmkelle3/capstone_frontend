@@ -144,7 +144,7 @@ const LossInput = props => {
               id="demo-customized-select-native"
               name="lossCategory"
               value={lossCategory}
-              onChange={setLossCategory}
+              onChange={e => setLossCategory(e.target.value)}
               input={<BootstrapInput />}
             >
               <option>Lost</option>
