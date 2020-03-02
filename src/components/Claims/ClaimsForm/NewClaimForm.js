@@ -1,27 +1,15 @@
 /* eslint-disable default-case */
 import "date-fns";
-import React, { useState, Fragment } from "react";
-import {
-  Typography,
-  Grid,
-  Paper,
-  Button,
-  MobileStepper,
-  StepContent
-} from "@material-ui/core";
-import { makeStyles, withStyles, useTheme } from "@material-ui/core/styles";
+import React, { useState } from "react";
+import { Typography, Grid, Paper, Button } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { addClaim } from "../../../store/Claims/actions";
 import { useHistory } from "react-router-dom";
 ///Stepper Imports
-import { KeyboardArrowLeft, KeyboardArrowRight } from "@material-ui/icons";
-import InputBase from "@material-ui/core/InputBase";
-import FormControl from "@material-ui/core/FormControl";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-//Style Import
-// import Styles from "../../Harry/Styles";
 //Components Imports
 import LossInput from "./LossInput";
 import ClaimDate from "./ClaimDate";
@@ -67,50 +55,27 @@ function getSteps() {
 
 ///////////////////////////////////Component Code//////////////////////////////////////
 const NewClaimForm = props => {
-  // const classes = useStyles();
   const history = useHistory();
   const theme = useTheme();
 
-  ///Function to Implement Switch Case for Form Steps///
-  function formSteps(currentStep) {
-    switch (currentStep) {
-      case 0:
-        return <LossInput />;
-      case 1:
-        return <ClaimDate />;
-      case 2:
-        return <PolicyType />;
-      case 3:
-        return <ItemType />;
-      case 4:
-        return <PoliceReport />;
-      case 5:
-        return <Price />;
-      case 6:
-        return <PayInfo />;
-      case 7:
-        return <ClaimComplete />;
-    }
-  }
-
-  /////Constants for tracking Steps/////
-  const classes = useStyles();
-  const [currentStep, setStep] = useState(0);
-  const steps = getSteps();
-
-  const nextStep = () => {
-    setStep(currentStep + 1);
-  };
-
-  const prevStep = () => {
-    setStep(currentStep - 1);
-  };
-
-  const handleReset = () => {
-    setStep(1);
-  };
-
   /////////////////FormState///////////////
+
+  const [inputs, setInputs] = React.useState({
+    lossCategory: "",
+    lossType: "",
+    claimDetails: "",
+    claimDate: "claimDate",
+    policyType: "policyType",
+    scheduled: "scheduled",
+    unscheduled: "unscheduled",
+    other: "other",
+    jusrisdiction: "jusrisdiction",
+    caseNumber: "caseNumber",
+    reportDate: "reportDate",
+    noPr: "noPr",
+    price: "price",
+    payInfo: "payInfo"
+  });
 
   //LossInput State
   const [lossCategory, setLossCategory] = useState("");
@@ -159,34 +124,76 @@ const NewClaimForm = props => {
     payInfo: payInfo
   };
 
+  ///Function to Implement Switch Case for Form Steps///
+  function formSteps(currentStep) {
+    switch (currentStep) {
+      case 0:
+        return (
+          <LossInput
+            props={props}
+            lossCategory={lossCategory}
+            setLossCategory={setLossCategory}
+            lossType={lossType}
+            setLossType={setLossType}
+            claimDetails={claimDetails}
+            setClaimDetails={setClaimDetails}
+          />
+        );
+      case 1:
+        return <ClaimDate props={props} newClaim={newClaim} />;
+      case 2:
+        return <PolicyType props={props} newClaim={newClaim} />;
+      case 3:
+        return <ItemType props={props} newClaim={newClaim} />;
+      case 4:
+        return <PoliceReport props={props} newClaim={newClaim} />;
+      case 5:
+        return <Price props={props} newClaim={newClaim} />;
+      case 6:
+        return <PayInfo props={props} newClaim={newClaim} />;
+      case 7:
+        return <ClaimComplete props={props} newClaim={newClaim} />;
+    }
+  }
+
+  /////Constants for tracking Steps/////
+  const classes = useStyles();
+  const [currentStep, setStep] = useState(0);
+  const steps = getSteps();
+
+  const nextStep = () => {
+    setStep(currentStep + 1);
+  };
+
+  const prevStep = () => {
+    setStep(currentStep - 1);
+  };
+
+  const handleReset = () => {
+    setStep(1);
+  };
+
   // Component methods
   const handleDateChange = date => {
     setClaimDate(date);
     setReportDate(date);
   };
 
+  // const handleInputChange = e => {
+  //   let { name, value } = e.target;
+  //   setInputs({
+  //     ...inputs,
+  //     [name]: value
+  //   });
+  // };
+
   const handleSubmit = e => {
     e.preventDefault();
 
     dispatch(addClaim(newClaim));
 
-    history.push("/");
+    history.push("/claims");
   };
-
-  //Selects
-  const [inputs, setInputs] = React.useState({
-    lossCategory: "",
-    lossType: "",
-    claimDetails: "",
-    claimDate: "",
-    policyType: "",
-    itemType: "",
-    jusrisdiction: "",
-    caseNumber: "",
-    reportDate: "",
-    price: "",
-    payInfo: ""
-  });
 
   const dispatch = useDispatch();
   return (

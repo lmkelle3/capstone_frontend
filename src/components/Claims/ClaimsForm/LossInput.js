@@ -1,9 +1,7 @@
 import React from "react";
 import { TextField, Typography, Grid } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputBase from "@material-ui/core/InputBase";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -100,7 +98,6 @@ const BootstrapInput = withStyles(theme => ({
     fontSize: 16,
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -121,28 +118,14 @@ const BootstrapInput = withStyles(theme => ({
   }
 }))(InputBase);
 
-const LossInput = () => {
-  //   const dispatch = useDispatch();
+const LossInput = props => {
+  const lossCategory = props.lossCategory;
+  const setLossCategory = props.setLossCategory;
+  const lossType = props.lossType;
+  const setLossType = props.setLossType;
+  const claimDetails = props.claimDetails;
+  const setClaimDetails = props.setClaimDetails;
   const classes = useStyles();
-
-  const [inputs, setInputs] = React.useState({
-    category: "",
-    type: "",
-    description: ""
-  });
-
-  const handleChange = e => {
-    let { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value
-    });
-  };
-
-  //   const handleSubmit = e => {
-  //     e.preventDefault();
-  //     dispatch(addClaim(inputs));
-  //   };
 
   return (
     <div>
@@ -159,8 +142,9 @@ const LossInput = () => {
             </InputLabel>
             <NativeSelect
               id="demo-customized-select-native"
-              value={inputs.lossCategory}
-              onChange={handleChange}
+              name="lossCategory"
+              value={lossCategory}
+              onChange={setLossCategory}
               input={<BootstrapInput />}
             >
               <option>Lost</option>
@@ -175,8 +159,9 @@ const LossInput = () => {
             </InputLabel>
             <NativeSelect
               id="demo-customized-select-native"
-              value={inputs.lossType}
-              onChange={handleChange}
+              name="lossType"
+              value={lossType}
+              onChange={e => setLossType(e.target.value)}
               input={<BootstrapInput />}
             >
               <option>Lost and not Found</option>
@@ -189,12 +174,13 @@ const LossInput = () => {
             <TextField
               id="details"
               label="Enter claim details"
-              value={inputs.claimDetails}
+              name="claimDetails"
+              value={claimDetails}
               variant="outlined"
               multiline
               rows="6"
               className={classes.details}
-              onChange={handleChange}
+              onChange={e => setClaimDetails(e.target.value)}
             />
           </Grid>
         </FormControl>
