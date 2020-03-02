@@ -140,13 +140,27 @@ const NewClaimForm = props => {
           />
         );
       case 1:
-        return <ClaimDate props={props} newClaim={newClaim} />;
+        return (
+          <ClaimDate
+            props={props}
+            newClaim={newClaim}
+            claimDate={claimDate}
+            setClaimDate={setClaimDate}
+          />
+        );
       case 2:
         return <PolicyType props={props} newClaim={newClaim} />;
       case 3:
         return <ItemType props={props} newClaim={newClaim} />;
       case 4:
-        return <PoliceReport props={props} newClaim={newClaim} />;
+        return (
+          <PoliceReport
+            props={props}
+            newClaim={newClaim}
+            reportDate={reportDate}
+            setReportDate={setReportDate}
+          />
+        );
       case 5:
         return <Price props={props} newClaim={newClaim} />;
       case 6:

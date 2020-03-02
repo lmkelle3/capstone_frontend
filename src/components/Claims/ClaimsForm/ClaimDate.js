@@ -8,17 +8,8 @@ import {
 import DateFnsUtils from "@date-io/date-fns";
 
 const ClaimDate = props => {
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-  const [inputs, setInputs] = React.useState({
-    category: "",
-    type: "",
-    description: ""
-  });
-
-  const handleDateChange = date => {
-    setSelectedDate(date);
-  };
+  const claimDate = props.claimDate;
+  const setClaimDate = props.setClaimDate;
 
   return (
     <div>
@@ -28,20 +19,18 @@ const ClaimDate = props => {
         </Typography>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
-            {/* <form className={classes.form} noValidate autoComplete="off"> */}
             <KeyboardDatePicker
               required
               margin="normal"
-              id="claimDate"
-              label="Claim date"
-              format="dd/MM/yyyy"
-              value={inputs.claimDate}
-              onChange={handleDateChange}
+              id="date-picker-inline"
+              label="Claim Date"
+              format="MM/dd/yyyy"
+              value={claimDate}
+              onChange={setClaimDate}
               KeyboardButtonProps={{
                 "aria-label": "change date"
               }}
             />
-            {/* </form> */}
           </Grid>
         </MuiPickersUtilsProvider>
       </Grid>

@@ -130,6 +130,8 @@ const BootstrapInput = withStyles(theme => ({
 }))(InputBase);
 
 const PoliceReport = props => {
+  const reportDate = props.reportDate;
+  const setReportDate = props.setReportDate;
   function StyledRadio(props) {
     const classes = useStyles();
 
@@ -206,8 +208,8 @@ const PoliceReport = props => {
                 id="prDate"
                 label="Report date"
                 format="MM/dd/yyyy"
-                value={inputs.reportDate}
-                onChange={handleDateChange}
+                value={reportDate}
+                onChange={e => setReportDate}
                 KeyboardButtonProps={{
                   "aria-label": "change date"
                 }}
