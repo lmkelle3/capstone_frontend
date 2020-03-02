@@ -1,5 +1,5 @@
-import React from "react";
 import "date-fns";
+import React from "react";
 import { Typography, Grid } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
@@ -34,7 +34,7 @@ const ClaimDate = props => {
               margin="normal"
               id="claimDate"
               label="Claim date"
-              format="MM/dd/yyyy"
+              format="dd/MM/yyyy"
               value={inputs.claimDate}
               onChange={handleDateChange}
               KeyboardButtonProps={{
