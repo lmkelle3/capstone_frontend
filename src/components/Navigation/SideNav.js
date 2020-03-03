@@ -13,16 +13,11 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   paper: {
-    marginRight: theme.spacing(2),
-    padding: theme.spacing(3, 2),
-    marginTop: 10,
-    color: theme.palette.text.primary,
-    textAlign: "center",
-    backgroundColor: theme.palette.info.main
+    marginRight: theme.spacing(2)
   }
 }));
 
-const SideNav = props => {
+const SideNav = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -56,21 +51,56 @@ const SideNav = props => {
     prevOpen.current = open;
   }, [open]);
 
-  const preventDefault = event => event.preventDefault();
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <MenuList>
           <MenuItem>Profile</MenuItem>
-          <MenuItem href="/login" onClick={preventDefault}>
-            Home
-          </MenuItem>
-          <MenuItem href="/claims" onClick={preventDefault}>
-            Claims
-          </MenuItem>
+          <MenuItem>My account</MenuItem>
+          <MenuItem>Logout</MenuItem>
         </MenuList>
       </Paper>
+      <div>
+        <Button
+          ref={anchorRef}
+          aria-controls={open ? "menu-list-grow" : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          Toggle Menu Grow
+        </Button>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom" ? "center top" : "center bottom"
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div>
     </div>
   );
 };

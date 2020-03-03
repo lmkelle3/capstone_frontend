@@ -149,27 +149,31 @@ const PayInfo = () => {
   return (
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
-        <Typography variant="h5" component="h3">
-          Please select your preferred payment account.
-        </Typography>
-        <FormControl>
-          <InputLabel id="demo-customized-select-label">
-            Account Preference
-          </InputLabel>
-          <Select
-            labelId="demo-customized-select-label"
-            id="demo-customized-select"
-            value={inputs.payInfo}
-            onChange={handleChange}
-            input={<BootstrapInput />}
-          >
-            <MenuItem>
-              <em>None</em>
-            </MenuItem>
-            <MenuItem>Bank of Tomorrow</MenuItem>
-            <MenuItem>Bank of Today</MenuItem>
-          </Select>
-        </FormControl>
+        <Grid item>
+          <Typography variant="h5" component="h3">
+            Please select your preferred payment account.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl>
+            <InputLabel id="demo-customized-select-label">
+              Account Preference
+            </InputLabel>
+            <Select
+              labelId="demo-customized-select-label"
+              id="demo-customized-select"
+              value={inputs.payInfo}
+              onChange={handleChange}
+              input={<BootstrapInput />}
+            >
+              <MenuItem>
+                <em>None</em>
+              </MenuItem>
+              <MenuItem>Bank of Tomorrow</MenuItem>
+              <MenuItem>Bank of Today</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
       </Grid>
     </div>
   );

@@ -1,6 +1,5 @@
 import "date-fns";
 import React from "react";
-
 import clsx from "clsx";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -150,7 +149,7 @@ const PoliceReport = props => {
   }
   const classes = useStyles();
 
-  const { handleDateChange } = props;
+  // const { handleDateChange } = props;
 
   //Selects
   const [inputs, setInputs] = React.useState({
@@ -205,11 +204,11 @@ const PoliceReport = props => {
               <KeyboardDatePicker
                 required
                 margin="normal"
-                id="prDate"
+                id="date-picker-inline"
                 label="Report date"
                 format="MM/dd/yyyy"
                 value={reportDate}
-                onChange={e => setReportDate}
+                onChange={setReportDate}
                 KeyboardButtonProps={{
                   "aria-label": "change date"
                 }}

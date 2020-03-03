@@ -94,7 +94,7 @@ const NewClaimForm = props => {
   const [other, setOther] = useState(false);
 
   //PoliceReport State
-  const [jusrisdiction, setJurisdiction] = useState("");
+  const [jurisdiction, setJurisdiction] = useState("");
   const [caseNumber, setCaseNumber] = useState("");
   const [reportDate, setReportDate] = useState(new Date());
   const [noPr, setNoPr] = useState(false);
@@ -116,7 +116,7 @@ const NewClaimForm = props => {
     scheduled: scheduled,
     unscheduled: unscheduled,
     other: other,
-    jusrisdiction: jusrisdiction,
+    jurisdiction: jurisdiction,
     caseNumber: caseNumber,
     reportDate: reportDate,
     noPr: noPr,
@@ -149,22 +149,60 @@ const NewClaimForm = props => {
           />
         );
       case 2:
-        return <PolicyType props={props} newClaim={newClaim} />;
+        return (
+          <PolicyType
+            props={props}
+            newClaim={newClaim}
+            policyType={PolicyType}
+            setPolicyType={setPolicyType}
+          />
+        );
       case 3:
-        return <ItemType props={props} newClaim={newClaim} />;
+        return (
+          <ItemType
+            props={props}
+            newClaim={newClaim}
+            scheduled={scheduled}
+            setScheduled={setScheduled}
+            unscheduled={unscheduled}
+            setUnscheduled={setUnscheduled}
+            other={other}
+            setOther={setOther}
+          />
+        );
       case 4:
         return (
           <PoliceReport
             props={props}
             newClaim={newClaim}
+            jurisdiction={jurisdiction}
+            setJurisdiction={setJurisdiction}
+            caseNumber={caseNumber}
+            setCaseNumber={setCaseNumber}
             reportDate={reportDate}
             setReportDate={setReportDate}
+            noPr={noPr}
+            setNoPr={setNoPr}
           />
         );
       case 5:
-        return <Price props={props} newClaim={newClaim} />;
+        return (
+          <Price
+            props={props}
+            newClaim={newClaim}
+            price={price}
+            setPrice={setPrice}
+          />
+        );
       case 6:
-        return <PayInfo props={props} newClaim={newClaim} />;
+        return (
+          <PayInfo
+            props={props}
+            newClaim={newClaim}
+            payInfo={payInfo}
+            setPayInfo={setPayInfo}
+          />
+        );
       case 7:
         return <ClaimComplete props={props} newClaim={newClaim} />;
     }

@@ -105,33 +105,37 @@ const ItemType = props => {
   return (
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
-        <Typography variant="h5" component="h3">
-          Please select the applicable item type.
-        </Typography>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Personal Property:</FormLabel>
-          <RadioGroup
-            defaultValue="unscheduled"
-            aria-label="unscheduled"
-            name="customized-radios"
-          >
-            <FormControlLabel
-              value="unscheduled"
-              control={<StyledRadio />}
-              label="Unscheduled"
-            />
-            <FormControlLabel
-              value="scheduled"
-              control={<StyledRadio />}
-              label="Scheduled"
-            />
-            <FormControlLabel
-              value="other"
-              control={<StyledRadio />}
-              label="Other"
-            />
-          </RadioGroup>
-        </FormControl>
+        <Grid item xs={12}>
+          <Typography variant="h5" component="h3">
+            Please select the applicable item type.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Personal Property:</FormLabel>
+            <RadioGroup
+              defaultValue="unscheduled"
+              aria-label="unscheduled"
+              name="customized-radios"
+            >
+              <FormControlLabel
+                value="unscheduled"
+                control={<StyledRadio />}
+                label="Unscheduled"
+              />
+              <FormControlLabel
+                value="scheduled"
+                control={<StyledRadio />}
+                label="Scheduled"
+              />
+              <FormControlLabel
+                value="other"
+                control={<StyledRadio />}
+                label="Other"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
       </Grid>
     </div>
   );

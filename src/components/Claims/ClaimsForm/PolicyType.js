@@ -139,24 +139,30 @@ const PolicyType = () => {
   return (
     <div>
       <Grid container direction="row" justify="center" alignItems="center">
-        <Typography variant="h5" component="h3">
-          Please select the applicable policy type.
-        </Typography>
-        <FormControl className={classes.margin}>
-          <InputLabel id="demo-customized-select-label">Policy Type</InputLabel>
-          <Select
-            labelId="demo-customized-select-label"
-            id="demo-customized-select"
-            value={inputs.policyType}
-            onChange={handleChange}
-            input={<BootstrapInput />}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem>Valuable Personal Property</MenuItem>
-          </Select>
-        </FormControl>
+        <Grid item xs={12}>
+          <Typography variant="h5" component="h3">
+            Please select the applicable policy type.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <FormControl className={classes.margin}>
+            <InputLabel id="demo-customized-select-label">
+              Policy Type
+            </InputLabel>
+            <Select
+              labelId="demo-customized-select-label"
+              id="demo-customized-select"
+              value={inputs.policyType}
+              onChange={handleChange}
+              input={<BootstrapInput />}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem>Valuable Personal Property</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
       </Grid>
     </div>
   );
