@@ -7,6 +7,8 @@ import Popper from "@material-ui/core/Popper";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import { makeStyles } from "@material-ui/core/styles";
+import Link from "@material-ui/core/Link";
+import Login from "../../components/Login";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,12 +57,14 @@ const SideNav = () => {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <MenuList>
-          <MenuItem>Profile</MenuItem>
+          <MenuItem to={Login} onClick={e => console.log("login")}>
+            Profile
+          </MenuItem>
           <MenuItem>My account</MenuItem>
           <MenuItem>Logout</MenuItem>
         </MenuList>
       </Paper>
-      <div>
+      {/* <div>
         <Button
           ref={anchorRef}
           aria-controls={open ? "menu-list-grow" : undefined}
@@ -100,7 +104,7 @@ const SideNav = () => {
             </Grow>
           )}
         </Popper>
-      </div>
+      </div> */}
     </div>
   );
 };
