@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 10
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15)
+    fontSize: theme.typography.pxToRem(18)
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),

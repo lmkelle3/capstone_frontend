@@ -39,9 +39,9 @@ const ClaimsList = () => {
     <Fragment>
       <CssBaseline />
       <Paper variant="outlined" elevation={3} className={classes.root}>
-        <Paper>
-          <Typography>My Claims:</Typography>
-        </Paper>
+        {/* <Paper>
+          <Typography variant="h5">My Claims:</Typography>
+        </Paper> */}
         <List>{<Grid item>{listOfClaims}</Grid>}</List>
       </Paper>
     </Fragment>
