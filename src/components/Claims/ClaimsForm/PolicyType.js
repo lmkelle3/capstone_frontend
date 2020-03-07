@@ -1,17 +1,16 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Typography, Grid } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
 import InputBase from "@material-ui/core/InputBase";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
-// Form Styling
 const useStyles = makeStyles(theme => ({
   root: {
     "&:hover": {
-      backgroundColor: "transparent"
+      backgroundColor: "transparent",
+      alignItems: "center",
+      justifyContent: "center"
     }
   },
   icon: {
@@ -99,7 +98,6 @@ const BootstrapInput = withStyles(theme => ({
     fontSize: 16,
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -120,24 +118,13 @@ const BootstrapInput = withStyles(theme => ({
   }
 }))(InputBase);
 
-const PolicyType = () => {
+const PolicyType = props => {
   const classes = useStyles();
+  const policyType = props.policyType;
+  const setPolicyType = props.setPolicyType;
 
-  const [inputs, setInputs] = React.useState({
-    category: "",
-    type: "",
-    description: ""
-  });
-
-  const handleChange = e => {
-    let { name, value } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value
-    });
-  };
   return (
-    <div>
+    <Fragment>
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={12}>
           <Typography variant="h5" component="h3">
@@ -145,26 +132,22 @@ const PolicyType = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <FormControl className={classes.margin}>
-            <InputLabel id="demo-customized-select-label">
-              Policy Type
-            </InputLabel>
-            <Select
-              labelId="demo-customized-select-label"
-              id="demo-customized-select"
-              value={inputs.policyType}
-              onChange={handleChange}
-              input={<BootstrapInput />}
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem>Valuable Personal Property</MenuItem>
-            </Select>
-          </FormControl>
+          <InputLabel htmlFor="demo-customized-select-native">
+            Policy Type
+          </InputLabel>
+          <NativeSelect
+            id="demo-customized-select-native"
+            name="policyType"
+            value={policyType}
+            onChange={e => setPolicyType(e.target.value)}
+            input={<BootstrapInput />}
+          >
+            <option>Other</option>
+            <option>Valuable Personal Property</option>
+          </NativeSelect>
         </Grid>
       </Grid>
-    </div>
+    </Fragment>
   );
 };
 

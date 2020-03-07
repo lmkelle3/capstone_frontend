@@ -5,6 +5,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers";
+import FormControl from "@material-ui/core/FormControl";
 import DateFnsUtils from "@date-io/date-fns";
 
 const ClaimDate = props => {
@@ -12,7 +13,7 @@ const ClaimDate = props => {
   const setClaimDate = props.setClaimDate;
 
   return (
-    <div>
+    <FormControl>
       <Grid container direction="row" justify="center" alignItems="center">
         <Typography variant="h5" component="h3">
           Please select the approximate date that this occurred.
@@ -34,7 +35,7 @@ const ClaimDate = props => {
           </Grid>
         </MuiPickersUtilsProvider>
       </Grid>
-    </div>
+    </FormControl>
   );
 };
 export default ClaimDate;

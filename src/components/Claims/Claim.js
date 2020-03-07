@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import {
   Card,
   CardImg,
@@ -11,7 +11,7 @@ import {
 
 const Claim = () => {
   return (
-    <div>
+    <Fragment>
       <Card>
         <CardImg
           top
@@ -29,7 +29,7 @@ const Claim = () => {
           <Button>Button</Button>
         </CardBody>
       </Card>
-    </div>
+    </Fragment>
   );
 };
 

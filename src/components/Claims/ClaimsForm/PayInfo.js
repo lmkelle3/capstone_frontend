@@ -7,7 +7,6 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputBase from "@material-ui/core/InputBase";
 
@@ -124,30 +123,13 @@ const BootstrapInput = withStyles(theme => ({
   }
 }))(InputBase);
 
-const PayInfo = () => {
-  //Selects
-  const [inputs, setInputs] = React.useState({
-    lossCategory: "",
-    lossType: "",
-    claimDetails: "",
-    claimDate: "",
-    policyType: "",
-    itemType: "",
-    jusrisdiction: "",
-    caseNumber: "",
-    reportDate: "",
-    price: "",
-    payInfo: ""
-  });
-
-  const dispatch = useDispatch();
-
-  const handleChange = event => {
-    setInputs(event.target.value);
-  };
+const PayInfo = props => {
+  const classes = useStyles();
+  const payInfo = props.payInfo;
+  const setPayInfo = props.setPayInfo;
 
   return (
-    <div>
+    <FormControl>
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item>
           <Typography variant="h5" component="h3">
@@ -155,27 +137,24 @@ const PayInfo = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <FormControl>
-            <InputLabel id="demo-customized-select-label">
-              Account Preference
+          <FormControl className={classes.margin}>
+            <InputLabel htmlFor="demo-customized-select-native">
+              Payment Information
             </InputLabel>
-            <Select
-              labelId="demo-customized-select-label"
-              id="demo-customized-select"
-              value={inputs.payInfo}
-              onChange={handleChange}
+            <NativeSelect
+              id="demo-customized-select-native"
+              name="lossType"
+              value={payInfo}
+              onChange={e => setPayInfo(e.target.value)}
               input={<BootstrapInput />}
             >
-              <MenuItem>
-                <em>None</em>
-              </MenuItem>
-              <MenuItem>Bank of Tomorrow</MenuItem>
-              <MenuItem>Bank of Today</MenuItem>
-            </Select>
+              <option>Bank of Today</option>
+              <option>Bank of Tomorrow</option>
+            </NativeSelect>
           </FormControl>
         </Grid>
       </Grid>
-    </div>
+    </FormControl>
   );
 };
 

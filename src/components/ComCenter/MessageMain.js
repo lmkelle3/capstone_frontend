@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Jumbotron, Button } from "reactstrap";
 
 const MessageMain = props => {
   return (
-    <div>
+    <Fragment>
       <Jumbotron>
         <h1 className="display-3">Messages Main</h1>
         <p className="lead">
@@ -21,7 +21,7 @@ const MessageMain = props => {
           <Button color="primary">File New Claim</Button>
         </p>
       </Jumbotron>
-    </div>
+    </Fragment>
   );
 };
 

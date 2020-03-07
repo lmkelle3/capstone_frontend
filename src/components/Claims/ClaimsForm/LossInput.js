@@ -1,7 +1,6 @@
 import React from "react";
-import { TextField, Typography, Grid } from "@material-ui/core";
+import { TextField, Typography, Grid, Box } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
-import FormControl from "@material-ui/core/FormControl";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputBase from "@material-ui/core/InputBase";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -10,7 +9,9 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
   root: {
     "&:hover": {
-      backgroundColor: "transparent"
+      backgroundColor: "transparent",
+      alignItems: "center",
+      justifyContent: "center"
     }
   },
   icon: {
@@ -128,15 +129,21 @@ const LossInput = props => {
   const classes = useStyles();
 
   return (
-    <div>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item>
-          <Typography variant="h5" component="h3">
-            Please enter your Loss Type and Description of your Loss.
-          </Typography>
-        </Grid>
+    <React.Fragment>
+      <Typography variant="h5" component="h3" style={{ textAlign: "center" }}>
+        Please enter your Loss Type and Description of your Loss.
+      </Typography>
+      <Grid
+        container
+        spacing={3}
+        className={classes.root}
+        direction="row"
+        justify="center"
+        alignItems="center"
+        style={{ marginLeft: "400px", marginTop: "20px", marginBottom: "20px" }}
+      >
         <Grid item xs={12}>
-          <FormControl className={classes.margin}>
+          <Box m="auto">
             <InputLabel htmlFor="demo-customized-select-native">
               Loss Category
             </InputLabel>
@@ -150,42 +157,38 @@ const LossInput = props => {
               <option>Lost</option>
               <option>Burglary/Theft</option>
             </NativeSelect>
-          </FormControl>
+          </Box>
         </Grid>
         <Grid item xs={12}>
-          <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-select-native">
-              Loss Type
-            </InputLabel>
-            <NativeSelect
-              id="demo-customized-select-native"
-              name="lossType"
-              value={lossType}
-              onChange={e => setLossType(e.target.value)}
-              input={<BootstrapInput />}
-            >
-              <option>Lost and not Found</option>
-              <option>Theft</option>
-            </NativeSelect>
-          </FormControl>
+          <InputLabel htmlFor="demo-customized-select-native">
+            Loss Type
+          </InputLabel>
+          <NativeSelect
+            id="demo-customized-select-native"
+            name="lossType"
+            value={lossType}
+            onChange={e => setLossType(e.target.value)}
+            input={<BootstrapInput />}
+          >
+            <option>Lost and not Found</option>
+            <option>Theft</option>
+          </NativeSelect>
         </Grid>
-        <FormControl className={classes.margin}>
-          <Grid item xs={12}>
-            <TextField
-              id="details"
-              label="Enter claim details"
-              name="claimDetails"
-              value={claimDetails}
-              variant="outlined"
-              multiline
-              rows="6"
-              className={classes.details}
-              onChange={e => setClaimDetails(e.target.value)}
-            />
-          </Grid>
-        </FormControl>
+        <Grid item xs={12}>
+          <TextField
+            id="details"
+            label="Enter claim details"
+            name="claimDetails"
+            value={claimDetails}
+            variant="outlined"
+            multiline
+            rows="6"
+            className={classes.details}
+            onChange={e => setClaimDetails(e.target.value)}
+          />
+        </Grid>
       </Grid>
-    </div>
+    </React.Fragment>
   );
 };
 

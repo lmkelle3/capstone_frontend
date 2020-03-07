@@ -1,7 +1,14 @@
 /* eslint-disable default-case */
 import "date-fns";
 import React, { useState } from "react";
-import { Typography, Grid, Paper, Button } from "@material-ui/core";
+import {
+  Typography,
+  Grid,
+  Paper,
+  Button,
+  CssBaseline,
+  Container
+} from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { addClaim } from "../../../store/Claims/actions";
@@ -18,24 +25,77 @@ import ItemType from "./ItemType";
 import PoliceReport from "./PoliceReport";
 import Price from "./Price";
 import PayInfo from "./PayInfo";
-import ClaimComplete from "../ClaimComplete";
+import ClaimComplete from "./ClaimComplete";
 
 ///Grid & Stepper Styling///
+
+const drawerWidth = 200;
+
 const useStyles = makeStyles(theme => ({
   root: {
+    display: "flex",
+    margin: 80
+  },
+  button: {
+    margin: theme.spacing(1)
+  },
+  toolbar: {
+    paddingRight: 24 // keep right padding when drawer closed
+  },
+  toolbarIcon: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "0 8px",
+    ...theme.mixins.toolbar
+  },
+  menuButton: {
+    marginRight: 36
+  },
+  menuButtonHidden: {
+    display: "none"
+  },
+  title: {
     flexGrow: 1
   },
-  backButton: {
-    marginRight: theme.spacing(1)
+  drawerPaper: {
+    position: "relative",
+    whiteSpace: "nowrap",
+    width: drawerWidth,
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen
+    })
   },
-  instructions: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
+  drawerPaperClose: {
+    overflowX: "hidden",
+    transition: theme.transitions.create("width", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    width: theme.spacing(7),
+    [theme.breakpoints.up("sm")]: {
+      width: theme.spacing(9)
+    }
+  },
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: "100vh",
+    overflow: "auto",
+    marginTop: "60px"
+  },
+  container: {
+    paddingBottom: theme.spacing(4)
   },
   paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary
+    padding: theme.spacing(3),
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column"
+  },
+  fixedHeight: {
+    height: 240
   }
 }));
 
@@ -59,23 +119,6 @@ const NewClaimForm = props => {
   const theme = useTheme();
 
   /////////////////FormState///////////////
-
-  // const [inputs, setInputs] = React.useState({
-  //   lossCategory: "",
-  //   lossType: "",
-  //   claimDetails: "",
-  //   claimDate: Date,
-  //   policyType: "",
-  //   scheduled: "scheduled",
-  //   unscheduled: "unscheduled",
-  //   other: "other",
-  //   jusrisdiction: "jusrisdiction",
-  //   caseNumber: "caseNumber",
-  //   reportDate: "reportDate",
-  //   noPr: "noPr",
-  //   price: "price",
-  //   payInfo: "payInfo"
-  // });
 
   //LossInput State
   const [lossCategory, setLossCategory] = useState("");
@@ -153,7 +196,7 @@ const NewClaimForm = props => {
           <PolicyType
             props={props}
             newClaim={newClaim}
-            policyType={PolicyType}
+            policyType={policyType}
             setPolicyType={setPolicyType}
           />
         );
@@ -204,7 +247,13 @@ const NewClaimForm = props => {
           />
         );
       case 7:
-        return <ClaimComplete props={props} newClaim={newClaim} />;
+        return (
+          <ClaimComplete
+            props={props}
+            newClaim={newClaim}
+            handleSubmit={handleSubmit}
+          />
+        );
     }
   }
 
@@ -221,87 +270,84 @@ const NewClaimForm = props => {
     setStep(currentStep - 1);
   };
 
-  const handleReset = () => {
-    setStep(1);
-  };
-
-  // Component methods
-  const handleDateChange = date => {
-    setClaimDate(date);
-    setReportDate(date);
-  };
-
-  // const handleInputChange = e => {
-  //   let { name, value } = e.target;
-  //   setInputs({
-  //     ...inputs,
-  //     [name]: value
-  //   });
-  // };
-
   const handleSubmit = e => {
+    console.log("event", e);
     e.preventDefault();
 
     dispatch(addClaim(newClaim));
-
+    console.log("NewClaim", newClaim);
     history.push("/claims");
   };
 
   const dispatch = useDispatch();
+
   return (
     <div className={classes.root}>
-      <Grid container>
-        <Paper>
-          <Grid item>
-            <Stepper currentStep={currentStep} alternativeLabel>
-              {steps.map(label => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
+      <CssBaseline />
+      <div className={classes.appBarSpacer} />
+      <Container maxWidth="lg" className={classes.container}>
+        <Grid style={{ justifyContent: "center" }} container spacing={10}>
+          <Grid item xs={11}>
+            <Paper className={classes.paper}>
+              <Stepper currentStep={currentStep} alternativeLabel>
+                {steps.map(label => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+              <React.Fragment>
+                {currentStep === steps.length ? (
+                  <React.Fragment>
+                    <Typography className={classes.instructions}>
+                      All steps completed
+                    </Typography>
+                    <Button color="primary" onClick={handleSubmit}>
+                      Submit
+                    </Button>
+                  </React.Fragment>
+                ) : (
+                  <div>
+                    <Grid
+                      container
+                      direction="row"
+                      justify="center"
+                      alignItems="center"
+                    >
+                      <Typography className={classes.instructions}>
+                        {formSteps(currentStep)}
+                      </Typography>
+                    </Grid>
+                    <div>
+                      <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                      >
+                        <Button
+                          disabled={currentStep === 0}
+                          onClick={prevStep}
+                          className={classes.backButton}
+                        >
+                          Back
+                        </Button>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={nextStep}
+                        >
+                          {currentStep === steps.length - 1 ? "Finish" : "Next"}
+                        </Button>
+                      </Grid>
+                    </div>
+                  </div>
+                )}
+              </React.Fragment>
+            </Paper>
           </Grid>
-          <div>
-            {currentStep === steps.length ? (
-              <div>
-                <Typography className={classes.instructions}>
-                  All steps completed
-                </Typography>
-                <Button onClick={handleReset}>Reset</Button>
-              </div>
-            ) : (
-              <div>
-                <Typography className={classes.instructions}>
-                  {formSteps(currentStep)}
-                </Typography>
-                <div>
-                  <Grid
-                    container
-                    direction="row"
-                    justify="center"
-                    alignItems="center"
-                  >
-                    <Button
-                      disabled={currentStep === 0}
-                      onClick={prevStep}
-                      className={classes.backButton}
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={nextStep}
-                    >
-                      {currentStep === steps.length - 1 ? "Finish" : "Next"}
-                    </Button>
-                  </Grid>
-                </div>
-              </div>
-            )}
-          </div>
-        </Paper>
-      </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 };

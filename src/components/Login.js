@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Col, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const Login = () => {
   return (
-    <div className="container text-center mt-4">
+    <Fragment className="container text-center mt-4">
       <h2>Login</h2>
       <Form className="mt-5">
         <FormGroup row>
@@ -38,7 +38,7 @@ const Login = () => {
           </Col>
         </FormGroup>
       </Form>
-    </div>
+    </Fragment>
   );
 };
 

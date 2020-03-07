@@ -4,7 +4,7 @@ import * as types from "./constants";
 export const getAllClaims = () => {
   return dispatch => {
     axios
-      .get("http://localhost:8000/claims")
+      .get("http://localhost:8080/claims")
       .then(res => {
         dispatch({
           type: types.GET_CLAIMS_SUCCESS,
@@ -22,7 +22,7 @@ export const getAllClaims = () => {
 export const addClaim = claim => {
   return dispatch => {
     axios
-      .post(`http://localhost:8000/claims`, claim)
+      .post(`http://localhost:8080/claims`, claim)
       .then(res => {
         dispatch({
           type: types.ADD_CLAIM_SUCCESS,
@@ -43,7 +43,7 @@ export const deleteClaim = id => async dispatch => {
     type: types.DELETE_CLAIM_PENDING
   });
   try {
-    let response = await axios.delete(`http://localhost:8000/claims/${id}`);
+    let response = await axios.delete(`http://localhost:8080/claims/${id}`);
     dispatch({
       type: types.DELETE_CLAIM_SUCCESS,
       payload: response.data
@@ -62,7 +62,7 @@ export const editClaim = (id, claim) => async dispatch => {
   });
   try {
     let response = await axios.patch(
-      `http://localhost:8000/claims/${id}`,
+      `http://localhost:8080/claims/${id}`,
       claim
     );
     dispatch({

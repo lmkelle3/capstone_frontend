@@ -102,8 +102,15 @@ function StyledRadio(props) {
 }
 
 const ItemType = props => {
+  const scheduled = props.scheduled;
+  const setScheduled = props.setScheduled;
+  const unscheduled = props.unscheduled;
+  const setUnscheduled = props.setUnscheduled;
+  const other = props.other;
+  const setOther = props.setOther;
+
   return (
-    <div>
+    <FormControl>
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid item xs={12}>
           <Typography variant="h5" component="h3">
@@ -119,25 +126,28 @@ const ItemType = props => {
               name="customized-radios"
             >
               <FormControlLabel
-                value="unscheduled"
+                value={unscheduled}
                 control={<StyledRadio />}
                 label="Unscheduled"
+                onChange={e => setUnscheduled(e.target.value)}
               />
               <FormControlLabel
-                value="scheduled"
+                value={scheduled}
                 control={<StyledRadio />}
                 label="Scheduled"
+                onChange={e => setScheduled(e.target.value)}
               />
               <FormControlLabel
-                value="other"
+                value={other}
                 control={<StyledRadio />}
                 label="Other"
+                onChange={e => setOther(e.target.value)}
               />
             </RadioGroup>
           </FormControl>
         </Grid>
       </Grid>
-    </div>
+    </FormControl>
   );
 };
 

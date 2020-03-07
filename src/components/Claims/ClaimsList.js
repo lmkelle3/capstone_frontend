@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Claim from "./Claim";
 import { useSelector } from "react-redux";
 import {
@@ -15,7 +15,7 @@ import {
 const ClaimsList = () => {
   const claims = useSelector(state => state.claims);
   return (
-    <div>
+    <Fragment>
       <Card>
         <CardBody>
           <CardTitle>Claims List</CardTitle>
@@ -27,7 +27,7 @@ const ClaimsList = () => {
           <Button>Button</Button>
         </CardBody>
       </Card>
-    </div>
+    </Fragment>
   );
 };
 

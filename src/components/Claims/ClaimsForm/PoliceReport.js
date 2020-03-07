@@ -129,8 +129,14 @@ const BootstrapInput = withStyles(theme => ({
 }))(InputBase);
 
 const PoliceReport = props => {
+  const jurisdiction = props.jurisdiction;
+  const setJurisdiction = props.setJurisdiction;
+  const caseNumber = props.caseNumber;
+  const setCaseNumber = props.setCaseNumber;
   const reportDate = props.reportDate;
   const setReportDate = props.setReportDate;
+  const noPr = props.noPr;
+  const setNoPr = props.setNoPr;
   function StyledRadio(props) {
     const classes = useStyles();
 
@@ -149,31 +155,10 @@ const PoliceReport = props => {
   }
   const classes = useStyles();
 
-  // const { handleDateChange } = props;
-
-  //Selects
-  const [inputs, setInputs] = React.useState({
-    lossCategory: "",
-    lossType: "",
-    claimDetails: "",
-    claimDate: "",
-    policyType: "",
-    itemType: "",
-    jusrisdiction: "",
-    caseNumber: "",
-    reportDate: "",
-    price: "",
-    payInfo: ""
-  });
-
-  const dispatch = useDispatch();
-
-  const handleChange = event => {
-    setInputs(event.target.value);
-  };
+  // const dispatch = useDispatch();
 
   return (
-    <div>
+    <FormControl>
       <Grid container direction="row" justify="center" alignItems="center">
         <Typography variant="h5" component="h3">
           Please enter your police report details.
@@ -183,21 +168,21 @@ const PoliceReport = props => {
             required
             id="jurisdiction"
             label="Jurisdiction Name"
-            value={inputs.jusrisdiction}
+            value={jurisdiction}
             fullWidth
             variant="outlined"
             className={classes.title}
-            onChange={handleChange}
+            onChange={e => setJurisdiction(e.target.value)}
           />
 
           <TextField
             required
             id="caseNumber"
             label="Case Number"
-            value={inputs.caseNumber}
+            value={caseNumber}
             variant="outlined"
             className={classes.address}
-            onChange={handleChange}
+            onChange={e => setCaseNumber(e.target.value)}
           />
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
@@ -217,19 +202,20 @@ const PoliceReport = props => {
           </MuiPickersUtilsProvider>
 
           <RadioGroup
-            defaultValue="pr"
+            defaultValue="false"
             aria-label="pr"
             name="customized-radios"
           >
             <FormControlLabel
-              value="pr"
+              value={noPr}
               control={<StyledRadio />}
               label="I do not have a Police Report"
+              onChange={e => setNoPr(e.target.value)}
             />
           </RadioGroup>
         </FormControl>
       </Grid>
-    </div>
+    </FormControl>
   );
 };
 
