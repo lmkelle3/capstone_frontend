@@ -8,6 +8,10 @@ export default (state = initialState, action) => {
       return action.payload;
     case types.GET_CLAIMS_FAILED:
       return action.payload;
+    case types.GET_ONE_CLAIM_SUCCESS:
+      return action.payload;
+    case types.GET_ONE_CLAIM_FAILED:
+      return action.payload;
     case types.ADD_CLAIM_SUCCESS:
       return [...state, action.payload[0]];
     case types.ADD_CLAIM_FAILED:

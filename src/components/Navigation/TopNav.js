@@ -16,6 +16,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import HomeIcon from "@material-ui/icons/Home";
+import ListIcon from "@material-ui/icons/List";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -56,6 +58,8 @@ const TopNav = props => {
     setState({ ...state, [side]: open });
   };
 
+  const iconList = [<HomeIcon />, <ListIcon />, <MailIcon />];
+
   const sideList = side => (
     <div
       className={classes.list}
@@ -64,10 +68,11 @@ const TopNav = props => {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["Home", "Claims Center", "Messages"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              {index % 2 === 0 ? <HomeIcon /> : <InboxIcon />}
+              {/* {iconList} */}
             </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
@@ -87,36 +92,36 @@ const TopNav = props => {
     </div>
   );
 
-  const fullList = side => (
-    <div
-      className={classes.fullList}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  // const fullList = side => (
+  //   <div
+  //     className={classes.fullList}
+  //     role="presentation"
+  //     onClick={toggleDrawer(side, false)}
+  //     onKeyDown={toggleDrawer(side, false)}
+  //   >
+  //     <List>
+  //       {["Home", "Claims Center", "Messages"].map((text, index) => (
+  //         <ListItem button key={text}>
+  //           <ListItemIcon>
+  //             {index % 2 === 0 ? <HomeIcon /> : <MailIcon />}
+  //           </ListItemIcon>
+  //           <ListItemText primary={text} />
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //     <Divider />
+  //     <List>
+  //       {["All mail", "Trash", "Spam"].map((text, index) => (
+  //         <ListItem button key={text}>
+  //           <ListItemIcon>
+  //             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+  //           </ListItemIcon>
+  //           <ListItemText primary={text} />
+  //         </ListItem>
+  //       ))}
+  //     </List>
+  //   </div>
+  // );
 
   return (
     <AppBar className={classes.colorPrimary} position="static">

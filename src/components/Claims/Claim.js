@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
@@ -11,6 +12,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Chip from "@material-ui/core/Chip";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
+
+import { getOneClaim } from "../../store/Claims/actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -51,50 +54,71 @@ const useStyles = makeStyles(theme => ({
 
 const Claim = props => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  return (
-    <Fragment className={classes.root}>
-      <ExpansionPanel>
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-        >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>
-              {props.claim.lossCategory}
-            </Typography>
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>
-              {props.claim.price}
-            </Typography>
-          </div>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails className={classes.details}>
-          <div className={classes.column} />
-          <div className={classes.column}>
-            <Chip label="Barbados" onDelete={() => {}} />
-          </div>
-          <div className={clsx(classes.column, classes.helper)}>
-            <Typography variant="caption">
-              Select your destination of choice
-              <br />
-              <a href="#secondary-heading-and-columns" className={classes.link}>
-                Learn more
-              </a>
-            </Typography>
-          </div>
-        </ExpansionPanelDetails>
-        <Divider />
-        <ExpansionPanelActions>
-          <Button size="small" variant="contained" color="primary">
-            Go to Claim
-          </Button>
-        </ExpansionPanelActions>
-      </ExpansionPanel>
-    </Fragment>
-  );
+  const getOneClaim = id => {
+    dispatch(getOneClaim(id));
+  };
+  if (props) {
+    return (
+      <Fragment className={classes.root}>
+        <ExpansionPanel>
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1c-content"
+            id="panel1c-header"
+          >
+            <div className={classes.column}>
+              <Typography className={classes.heading}>
+                {props.claim.lossCategory}
+              </Typography>
+            </div>
+            <div className={classes.column}>
+              <Typography className={classes.secondaryHeading}>
+                ${props.claim.price}
+              </Typography>
+            </div>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.details}>
+            <div className={classes.column} />
+            <div className={classes.column}>
+              <Chip label="Barbados" onDelete={() => {}} />
+            </div>
+            <div className={clsx(classes.column, classes.helper)}>
+              <Typography variant="caption">
+                Select your destination of choice
+                <br />
+                <a
+                  href="#secondary-heading-and-columns"
+                  className={classes.link}
+                >
+                  Learn more
+                </a>
+              </Typography>
+            </div>
+          </ExpansionPanelDetails>
+          <Divider />
+          <ExpansionPanelActions>
+            <Button
+              // component={Claim}
+              // href={`/claims/${props.claim.id}`}
+              // onClick={() => getOneClaim()}
+              size="small"
+              variant="contained"
+              color="primary"
+            >
+              Go to Claim
+            </Button>
+          </ExpansionPanelActions>
+        </ExpansionPanel>
+      </Fragment>
+    );
+  } else {
+    return (
+      <Fragment>
+        <Typography>Sorry...This page cannot be found</Typography>
+      </Fragment>
+    );
+  }
 };
-
 export default connect()(Claim);
