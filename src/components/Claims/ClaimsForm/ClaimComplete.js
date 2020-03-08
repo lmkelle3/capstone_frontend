@@ -1,96 +1,155 @@
-import React, { useState, Fragment } from "react";
-import { Paper, Typography, Grid, Button } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import React, { Fragment } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Box, Typography } from "@material-ui/core";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-//component styles
 const useStyles = makeStyles(theme => ({
-  paper: {
-    padding: theme.spacing(3, 2),
-    marginTop: 10,
-    color: theme.palette.text.primary,
-    textAlign: "center"
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
-    marginTop: 10
-  },
   root: {
-    flexGrow: 1
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.primary
-  },
-  img: {
-    height: 255,
-    maxWidth: 400,
-    overflow: "hidden",
-    display: "block",
     width: "100%"
   },
-  paper1: {
-    padding: theme.spacing(3, 2),
-    marginTop: 10,
-    color: theme.palette.text.primary,
-    textAlign: "center",
-    backgroundColor: theme.palette.info.light
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: "33.33%",
+    flexShrink: 0
   },
-  paper2: {
-    padding: theme.spacing(3, 2),
-    marginTop: 10,
-    color: theme.palette.text.primary,
-    textAlign: "center",
-    backgroundColor: theme.palette.primary
-  },
-  paper3: {
-    padding: theme.spacing(3, 2),
-    marginTop: 10,
-    color: theme.palette.text.primary,
-    textAlign: "center",
-    backgroundColor: theme.palette.info.main
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary
   }
 }));
 
-const ClaimComplete = props => {
+const ClaimComplete = (props, confirmationData) => {
+  // const confirmationData = props.confirmationData;
   const classes = useStyles();
-  const theme = useTheme();
+  const [expanded, setExpanded] = React.useState(false);
+
+  console.log("CD", confirmationData);
+
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   return (
     <Fragment>
       <Paper>
-        <Typography>Confirm claim details:</Typography>
-        <Grid container spacing={3}>
-          <Grid item sm={12}>
-            <Typography variant="h1">{props.lossCategory}</Typography>
-            <Typography variant="h1">{props.lossType}</Typography>
-            <Typography variant="h1">{props.claimDetails}</Typography>
-            <Typography variant="body1">{props.claimDate}</Typography>
-          </Grid>
-          <Grid item sm={4}>
-            <Typography variant="body1">{props.jurisdiction}</Typography>
-            <Typography variant="body1">{props.caseNumber}</Typography>
-            <Typography variant="body1">{props.reportDate}</Typography>
-          </Grid>
-          <Grid item sm={4}>
-            <Typography variant="body1">{props.policyType}</Typography>
-            <Typography variant="body1">{props.scheduled}</Typography>
-            <Typography variant="body1">{props.unscheduled}</Typography>
-            <Typography variant="body1">{props.other}</Typography>
-          </Grid>
-          <Grid item sm={4}>
-            <Typography variant="body1">{props.noPr}</Typography>
-          </Grid>
-          <Grid item sm={4}>
-            <Typography variant="body1">{props.price}</Typography>
-          </Grid>
-          <Grid item sm={4}>
-            <Typography variant="body1">{props.payInfo}</Typography>
-          </Grid>
-        </Grid>
+        <Typography variant="h4">Confirm Claim Details:</Typography>
+        <ExpansionPanel
+          expanded={expanded === "panel1"}
+          onChange={handleChange("panel1")}
+        >
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1bh-content"
+            id="panel1bh-header"
+          >
+            <Typography className={classes.heading}>Loss Input</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{confirmationData.lossCategory}</Typography>
+            <Typography>{confirmationData.lossType}</Typography>
+            <Typography>{confirmationData.claimDetails}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          expanded={expanded === "panel2"}
+          onChange={handleChange("panel2")}
+        >
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2bh-content"
+            id="panel2bh-header"
+          >
+            <Typography className={classes.heading}>Claim Date</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{confirmationData.claimDate}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          expanded={expanded === "panel3"}
+          onChange={handleChange("panel3")}
+        >
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3bh-content"
+            id="panel3bh-header"
+          >
+            <Typography className={classes.heading}>Policy Type</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{confirmationData.policyType}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          expanded={expanded === "panel4"}
+          onChange={handleChange("panel4")}
+        >
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel4bh-content"
+            id="panel4bh-header"
+          >
+            <Typography className={classes.heading}>Item Type</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{confirmationData.scheduled}</Typography>
+            <Typography>{confirmationData.unscheduled}</Typography>
+            <Typography>{confirmationData.other}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          expanded={expanded === "panel5"}
+          onChange={handleChange("panel5")}
+        >
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel5bh-content"
+            id="panel5bh-header"
+          >
+            <Typography className={classes.heading}>Police Report</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{confirmationData.jurisdiction}</Typography>
+            <Typography>{confirmationData.caseNumber}</Typography>
+            <Typography>{confirmationData.reportDate}</Typography>
+            <Typography>{confirmationData.noPr}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          expanded={expanded === "panel6"}
+          onChange={handleChange("panel6")}
+        >
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel6bh-content"
+            id="panel6bh-header"
+          >
+            <Typography className={classes.heading}>Price</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{confirmationData.price}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
+        <ExpansionPanel
+          expanded={expanded === "panel7"}
+          onChange={handleChange("panel7")}
+        >
+          <ExpansionPanelSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel7bh-content"
+            id="panel7bh-header"
+          >
+            <Typography className={classes.heading}>
+              Payment Information
+            </Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+            <Typography>{confirmationData.payInfo}</Typography>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       </Paper>
     </Fragment>
   );

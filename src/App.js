@@ -4,6 +4,7 @@ import ClaimsCenter from "./components/Claims/ClaimsCenter";
 import MessageMain from "./components/ComCenter/MessageMain";
 import Login from "./components/Login";
 import NewClaimForm from "./components/Claims/ClaimsForm/NewClaimForm";
+import ClaimComplete from "./components/Claims/ClaimsForm/ClaimComplete";
 
 import { useDispatch } from "react-redux";
 import { getAllClaims } from "../src/store/Claims/actions";
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/claims" component={ClaimsCenter} />
         <Route exact path="/messages" component={MessageMain} />
         <Route exact path="/form" component={NewClaimForm} />
+        <Route exact path="/complete" component={ClaimComplete} />
       </Switch>
     </Router>
   );
