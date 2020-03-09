@@ -21,10 +21,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ClaimComplete = (props, confirmationData) => {
+const ClaimComplete = props => {
   // const confirmationData = props.confirmationData;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const confirmationData = props.confirmationData;
+
+  const claimDate = Date(confirmationData.claimDate);
+  const reportDate = Date(confirmationData.reportDate);
 
   console.log("CD", confirmationData);
 
@@ -65,7 +69,7 @@ const ClaimComplete = (props, confirmationData) => {
             <Typography className={classes.heading}>Claim Date</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{confirmationData.claimDate}</Typography>
+            <Typography>{claimDate}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
@@ -114,7 +118,7 @@ const ClaimComplete = (props, confirmationData) => {
           <ExpansionPanelDetails>
             <Typography>{confirmationData.jurisdiction}</Typography>
             <Typography>{confirmationData.caseNumber}</Typography>
-            <Typography>{confirmationData.reportDate}</Typography>
+            <Typography>{reportDate}</Typography>
             <Typography>{confirmationData.noPr}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>

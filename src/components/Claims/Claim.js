@@ -57,7 +57,6 @@ const useStyles = makeStyles(theme => ({
 const Claim = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [update, setUpdate] = useState([]);
 
   // const getOneClaim = id => {
   //   dispatch(getOneClaim(id));
@@ -66,7 +65,6 @@ const Claim = props => {
   const handleDelete = e => {
     e.preventDefault();
     dispatch(deleteClaim(props.claim.id));
-    setUpdate([...update, props.claim.id]);
   };
 
   if (props.claim) {

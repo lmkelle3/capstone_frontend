@@ -28,8 +28,6 @@ const useStyles = makeStyles(theme => ({
 const ClaimsCenter = props => {
   const classes = useStyles();
 
-  console.log("props", props);
-
   return (
     <Fragment>
       <CssBaseline />
