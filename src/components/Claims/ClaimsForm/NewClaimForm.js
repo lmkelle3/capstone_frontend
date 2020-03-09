@@ -250,8 +250,8 @@ const NewClaimForm = props => {
         return (
           <ClaimComplete
             props={props}
-            newClaim={newClaim}
             handleSubmit={handleSubmit}
+            confirmationData={confirmationData}
           />
         );
     }
@@ -280,6 +280,23 @@ const NewClaimForm = props => {
   };
 
   const dispatch = useDispatch();
+
+  const confirmationData = {
+    lossCategory: lossCategory,
+    lossType: lossType,
+    claimDetails: claimDetails,
+    claimDate: claimDate,
+    policyType: policyType,
+    scheduled: scheduled,
+    unscheduled: unscheduled,
+    other: other,
+    jurisdiction: jurisdiction,
+    caseNumber: caseNumber,
+    reportDate: reportDate,
+    noPr: noPr,
+    price: price,
+    payInfo: payInfo
+  };
 
   return (
     <div className={classes.root}>

@@ -9,13 +9,13 @@ export default (state = initialState, action) => {
     case types.GET_CLAIMS_FAILED:
       return action.payload;
     case types.ADD_CLAIM_SUCCESS:
-      return [...state, action.payload[0]];
+      return [...state, action.payload];
     case types.ADD_CLAIM_FAILED:
       return action.payload;
     case types.DELETE_CLAIM_PENDING:
       return state;
     case types.DELETE_CLAIM_SUCCESS:
-      return state.filter(claim => claim.id !== action.payload[0].id);
+      return state.filter(claim => claim.id !== action.payload.id);
     case types.DELETE_CLAIM_FAILED:
       return action.payload;
     case types.EDIT_CLAIM_PENDING:

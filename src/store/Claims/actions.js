@@ -28,6 +28,7 @@ export const addClaim = claim => {
           type: types.ADD_CLAIM_SUCCESS,
           payload: res.data
         });
+        console.log("Payload", res.data);
       })
       .catch(err => {
         dispatch({

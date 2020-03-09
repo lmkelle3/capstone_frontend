@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import ClaimsList from "./ClaimsList";
+import ClaimsLanding from "./ClaimsLanding";
+import MessageMain from "../ComCenter/MessageMain";
 import {
   Typography,
   Button,
@@ -25,35 +27,15 @@ const useStyles = makeStyles(theme => ({
 
 const ClaimsCenter = props => {
   const classes = useStyles();
+
   return (
     <Fragment>
       <CssBaseline />
       <div className={classes.appBarSpacer} />
-      <Container maxWidth="lg" className={classes.container}>
-        <Grid style={{ justifyContent: "center" }} container spacing={10}>
-          <Box textAlign="center">
-            <Typography>
-              <h1 className="display-3">Welcome to Claims!</h1>
-              <p className="lead">
-                The claims process is simple. Click the "File New Claim" button
-                below to begin the form to submit a claim for your lost or
-                stolen jewelry item. You will be contacted should we have any
-                questions or need any additional documentation in order to
-                process your claim further.
-              </p>
-              <hr className="my-2" />
-              <p>
-                By selecting the button below, you are consenting to filing a
-                claim against your insurance policy.
-              </p>
-            </Typography>
-          </Box>
-          <Button href="/form" variant="contained" color="primary">
-            File New Claim
-          </Button>
-        </Grid>
-        {/* <ClaimsList /> */}
-      </Container>
+      <Grid container direction="row">
+        <ClaimsList />
+        {props.match.path == "/messages" ? <MessageMain /> : <ClaimsLanding />}
+      </Grid>
     </Fragment>
   );
 };
