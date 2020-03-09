@@ -142,8 +142,9 @@ const PolicyType = props => {
             onChange={e => setPolicyType(e.target.value)}
             input={<BootstrapInput />}
           >
-            <option>Other</option>
+            <option>Select One</option>
             <option>Valuable Personal Property</option>
+            <option>Other</option>
           </NativeSelect>
         </Grid>
       </Grid>

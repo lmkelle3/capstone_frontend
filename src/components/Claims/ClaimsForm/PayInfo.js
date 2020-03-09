@@ -148,6 +148,7 @@ const PayInfo = props => {
               onChange={e => setPayInfo(e.target.value)}
               input={<BootstrapInput />}
             >
+              <option>Select One</option>
               <option>Bank of Today</option>
               <option>Bank of Tomorrow</option>
             </NativeSelect>

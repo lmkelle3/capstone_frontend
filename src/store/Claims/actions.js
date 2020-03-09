@@ -19,6 +19,25 @@ export const getAllClaims = () => {
       });
   };
 };
+export const getOneClaim = id => {
+  return dispatch => {
+    axios
+      .get(`http://localhost:8080/claims/${id}`)
+      .then(res => {
+        dispatch({
+          type: types.GET_ONE_CLAIM_SUCCESS,
+          payload: res.data
+        });
+        console.log("payload", res.data);
+      })
+      .catch(err => {
+        dispatch({
+          type: types.GET_ONE_CLAIM_FAILED,
+          payload: err
+        });
+      });
+  };
+};
 export const addClaim = claim => {
   return dispatch => {
     axios
