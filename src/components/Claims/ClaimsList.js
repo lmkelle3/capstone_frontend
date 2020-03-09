@@ -27,13 +27,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ClaimsList = () => {
+const ClaimsList = props => {
   const classes = useStyles();
   const claims = useSelector(state => state.claims);
 
   let listOfClaims = claims.map(claim => (
-    <Claim claim={claim} key={claim.id} />
+    <Claim claim={claim} key={claim && claim.id} />
   ));
+
+  console.log("Claims", claims);
 
   return (
     <Fragment>

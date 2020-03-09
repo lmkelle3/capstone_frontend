@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/" component={Login} />
         {/* <Route exact path="/profile" component={Profile} /> */}
         <Route exact path="/claims" component={ClaimsCenter} />
-        <Route exact path="/messages" component={MessageMain} />
+        {/* <Route exact path="/messages" component={MessageMain} /> */}
         <Route exact path="/form" component={NewClaimForm} />
         <Route exact path="/complete" component={ClaimComplete} />
       </Switch>

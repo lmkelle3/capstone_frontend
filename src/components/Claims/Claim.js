@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { useState, Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import clsx from "clsx";
+import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -12,8 +13,9 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Chip from "@material-ui/core/Chip";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
+import { IconButton } from "@material-ui/core";
 
-import { getOneClaim } from "../../store/Claims/actions";
+import { getOneClaim, deleteClaim } from "../../store/Claims/actions";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -55,11 +57,19 @@ const useStyles = makeStyles(theme => ({
 const Claim = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [update, setUpdate] = useState([]);
 
-  const getOneClaim = id => {
-    dispatch(getOneClaim(id));
+  // const getOneClaim = id => {
+  //   dispatch(getOneClaim(id));
+  // };
+
+  const handleDelete = e => {
+    e.preventDefault();
+    dispatch(deleteClaim(props.claim.id));
+    setUpdate([...update, props.claim.id]);
   };
-  if (props) {
+
+  if (props.claim) {
     return (
       <Fragment className={classes.root}>
         <ExpansionPanel>
@@ -99,7 +109,15 @@ const Claim = props => {
           </ExpansionPanelDetails>
           <Divider />
           <ExpansionPanelActions>
-            <Button
+            <IconButton aria-label="delete">
+              <DeleteOutlineIcon
+                onClick={handleDelete}
+                size="small"
+                variant="contained"
+                color="primary"
+              />
+            </IconButton>
+            {/* <Button
               // component={Claim}
               // href={`/claims/${props.claim.id}`}
               // onClick={() => getOneClaim()}
@@ -108,7 +126,7 @@ const Claim = props => {
               color="primary"
             >
               Go to Claim
-            </Button>
+            </Button> */}
           </ExpansionPanelActions>
         </ExpansionPanel>
       </Fragment>
