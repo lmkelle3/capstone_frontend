@@ -11,13 +11,17 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
+import { MenuList, MenuItem } from "@material-ui/core";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import HomeIcon from "@material-ui/icons/Home";
 import ListIcon from "@material-ui/icons/List";
+
+//Link Imports
+import { Link as RouterLink, MemoryRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,6 +45,40 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+///Link
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef((itemProps, ref) => (
+        <RouterLink to={to} ref={ref} {...itemProps} />
+      )),
+    [to]
+  );
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
+}
+
+ListItemLink.propTypes = {
+  icon: PropTypes.element,
+  primary: PropTypes.string.isRequired,
+  to: PropTypes.string.isRequired
+};
+
+// const useStyles = makeStyles({
+//   root: {
+//     width: 360,
+//   },
+// });
+
 const TopNav = props => {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -58,8 +96,6 @@ const TopNav = props => {
     setState({ ...state, [side]: open });
   };
 
-  const iconList = [<HomeIcon />, <ListIcon />, <MailIcon />];
-
   const sideList = side => (
     <div
       className={classes.list}
@@ -67,19 +103,49 @@ const TopNav = props => {
       onClick={toggleDrawer(side, false)}
       onKeyDown={toggleDrawer(side, false)}
     >
-      <List>
-        {["Home", "Claims Center", "Messages"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <HomeIcon /> : <InboxIcon />}
-              {/* {iconList} */}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      {/* <List>
+        <ListItem> */}
+      <MemoryRouter initialEntries={["/"]} initialIndex={0}>
+        <List aria-label="main mailbox folders">
+          <ListItemLink to="/" primary="Home" icon={<HomeIcon />} />
+          <ListItemLink
+            to="/claims"
+            primary="Claims Center"
+            icon={<ListIcon />}
+          />
+          <ListItemLink
+            to="/messages"
+            primary="Messages Main"
+            icon={<MailIcon />}
+          />
+        </List>
+      </MemoryRouter>
+      {/* <MenuList>
+            <MenuItem>
+              <IconButton aria-label="home">
+                <HomeIcon />
+              </IconButton>
+              <Typography variant="inherit">Home</Typography>
+            </MenuItem>
+            <MenuItem>
+              <IconButton aria-label="list">
+                <ListIcon href="/claims" />
+              </IconButton>
+              <Typography variant="inherit">Claims Center</Typography>
+            </MenuItem>
+            <MenuItem>
+              <ListItemIcon aria-label="mail">
+                <MailIcon href="/messages" />
+              </ListItemIcon>
+              <Typography variant="inherit" noWrap>
+                Messages
+              </Typography>
+            </MenuItem>
+          </MenuList> */}
+      {/* </ListItem>
+      </List> */}
       <Divider />
-      <List>
+      {/* <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -88,7 +154,7 @@ const TopNav = props => {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
     </div>
   );
 

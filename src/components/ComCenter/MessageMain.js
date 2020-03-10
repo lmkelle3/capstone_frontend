@@ -7,7 +7,7 @@ const MessageMain = props => {
     <Fragment>
       <Typography>Message Main</Typography>
       <MessagesList />
-      <Button color="primary">File New Claim</Button>
+      <Button color="primary">Send New Message</Button>
     </Fragment>
   );
 };
