@@ -12,6 +12,7 @@ import {
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { addClaim } from "../../../store/Claims/actions";
+import { addMessage } from "../../../store/Messages/actions";
 import { useHistory } from "react-router-dom";
 ///Stepper Imports
 import Stepper from "@material-ui/core/Stepper";
@@ -26,6 +27,7 @@ import PoliceReport from "./PoliceReport";
 import Price from "./Price";
 import PayInfo from "./PayInfo";
 import ClaimComplete from "./ClaimComplete";
+import Message from "../../ComCenter/Message";
 
 ///Grid & Stepper Styling///
 
@@ -167,6 +169,19 @@ const NewClaimForm = props => {
     payInfo: payInfo
   };
 
+  //New message state
+  const [senderName, setSenderName] = useState("");
+  const [messageBody, setMessageBody] = useState(new Date());
+  const [createdAt, setCreatedAt] = useState(false);
+
+  // //New message object
+  // const newMessage = {
+  //   senderName: senderName,
+  //   claimId: props.claim.id,
+  //   messageBody: messageBody,
+  //   createdAt: createdAt
+  // };
+
   ///Function to Implement Switch Case for Form Steps///
   function formSteps(currentStep) {
     switch (currentStep) {
@@ -277,6 +292,15 @@ const NewClaimForm = props => {
     dispatch(addClaim(newClaim));
     console.log("NewClaim", newClaim);
     history.push("/claims");
+
+    // dispatch(addMessage(newMessage {
+    //     senderName: senderName,
+    //     claimId: props.claim.id,
+    //     messageBody: messageBody,
+    //     createdAt: createdAt
+    //   }
+    // console.log("NewMessage", newMessage);
+    // history.push("/messages");
   };
 
   const dispatch = useDispatch();
