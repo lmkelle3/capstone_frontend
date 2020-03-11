@@ -1,5 +1,11 @@
 import React from "react";
-import { TextField, Typography, Grid, Box } from "@material-ui/core";
+import {
+  TextField,
+  Typography,
+  Grid,
+  Box,
+  FormControl
+} from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import InputBase from "@material-ui/core/InputBase";
@@ -81,6 +87,9 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     color: theme.palette.secondary.light
+  },
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -130,63 +139,47 @@ const LossInput = props => {
 
   return (
     <React.Fragment>
-      <Typography variant="h5" component="h3" style={{ textAlign: "center" }}>
+      <Typography variant="h5" component="h3">
         Please enter your Loss Type and Description of your Loss.
       </Typography>
-      <Grid
-        container
-        spacing={3}
-        className={classes.root}
-        direction="row"
-        justify="center"
-        alignItems="center"
-        style={{ marginLeft: "400px", marginTop: "20px", marginBottom: "20px" }}
-      >
-        <Grid item xs={12}>
-          <Box m="auto">
-            <InputLabel htmlFor="demo-customized-select-native">
-              Loss Category
-            </InputLabel>
-            <NativeSelect
-              id="demo-customized-select-native"
-              name="lossCategory"
-              value={lossCategory}
-              onChange={e => setLossCategory(e.target.value)}
-              input={<BootstrapInput />}
-            >
-              <option>Lost</option>
-              <option>Burglary/Theft</option>
-            </NativeSelect>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <InputLabel htmlFor="demo-customized-select-native">
-            Loss Type
-          </InputLabel>
-          <NativeSelect
-            id="demo-customized-select-native"
-            name="lossType"
-            value={lossType}
-            onChange={e => setLossType(e.target.value)}
-            input={<BootstrapInput />}
-          >
-            <option>Lost and not Found</option>
-            <option>Theft</option>
-          </NativeSelect>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="details"
-            label="Enter claim details"
-            name="claimDetails"
-            value={claimDetails}
-            variant="outlined"
-            multiline
-            rows="6"
-            className={classes.details}
-            onChange={e => setClaimDetails(e.target.value)}
-          />
-        </Grid>
+      <Grid item className={classes.grid}>
+        <InputLabel>Loss Category</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          name="lossCategory"
+          value={lossCategory}
+          onChange={e => setLossCategory(e.target.value)}
+          input={<BootstrapInput />}
+        >
+          <option>Lost</option>
+          <option>Burglary/Theft</option>
+        </NativeSelect>
+      </Grid>
+      <Grid item className={classes.grid}>
+        <InputLabel>Loss Type</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          name="lossType"
+          value={lossType}
+          onChange={e => setLossType(e.target.value)}
+          input={<BootstrapInput />}
+        >
+          <option>Lost and not Found</option>
+          <option>Theft</option>
+        </NativeSelect>
+      </Grid>
+      <Grid item className={classes.grid}>
+        <TextField
+          id="details"
+          label="Enter claim details"
+          name="claimDetails"
+          value={claimDetails}
+          variant="outlined"
+          multiline
+          rows="6"
+          className={classes.details}
+          onChange={e => setClaimDetails(e.target.value)}
+        />
       </Grid>
     </React.Fragment>
   );

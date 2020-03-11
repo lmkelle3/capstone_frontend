@@ -96,6 +96,9 @@ const useStyles = makeStyles(theme => ({
   },
   fixedHeight: {
     height: 240
+  },
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -172,87 +175,143 @@ const NewClaimForm = props => {
     switch (currentStep) {
       case 0:
         return (
-          <LossInput
-            props={props}
-            lossCategory={lossCategory}
-            setLossCategory={setLossCategory}
-            lossType={lossType}
-            setLossType={setLossType}
-            claimDetails={claimDetails}
-            setClaimDetails={setClaimDetails}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <LossInput
+              props={props}
+              lossCategory={lossCategory}
+              setLossCategory={setLossCategory}
+              lossType={lossType}
+              setLossType={setLossType}
+              claimDetails={claimDetails}
+              setClaimDetails={setClaimDetails}
+            />
+          </Grid>
         );
       case 1:
         return (
-          <ClaimDate
-            props={props}
-            newClaim={newClaim}
-            claimDate={claimDate}
-            setClaimDate={setClaimDate}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <ClaimDate
+              props={props}
+              newClaim={newClaim}
+              claimDate={claimDate}
+              setClaimDate={setClaimDate}
+            />
+          </Grid>
         );
       case 2:
         return (
-          <PolicyType
-            props={props}
-            newClaim={newClaim}
-            policyType={policyType}
-            setPolicyType={setPolicyType}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <PolicyType
+              props={props}
+              newClaim={newClaim}
+              policyType={policyType}
+              setPolicyType={setPolicyType}
+            />
+          </Grid>
         );
       case 3:
         return (
-          <ItemType
-            props={props}
-            newClaim={newClaim}
-            scheduled={scheduled}
-            setScheduled={setScheduled}
-            unscheduled={unscheduled}
-            setUnscheduled={setUnscheduled}
-            other={other}
-            setOther={setOther}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <ItemType
+              props={props}
+              newClaim={newClaim}
+              scheduled={scheduled}
+              setScheduled={setScheduled}
+              unscheduled={unscheduled}
+              setUnscheduled={setUnscheduled}
+              other={other}
+              setOther={setOther}
+            />
+          </Grid>
         );
       case 4:
         return (
-          <PoliceReport
-            props={props}
-            newClaim={newClaim}
-            jurisdiction={jurisdiction}
-            setJurisdiction={setJurisdiction}
-            caseNumber={caseNumber}
-            setCaseNumber={setCaseNumber}
-            reportDate={reportDate}
-            setReportDate={setReportDate}
-            noPr={noPr}
-            setNoPr={setNoPr}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <PoliceReport
+              props={props}
+              newClaim={newClaim}
+              jurisdiction={jurisdiction}
+              setJurisdiction={setJurisdiction}
+              caseNumber={caseNumber}
+              setCaseNumber={setCaseNumber}
+              reportDate={reportDate}
+              setReportDate={setReportDate}
+              noPr={noPr}
+              setNoPr={setNoPr}
+            />
+          </Grid>
         );
       case 5:
         return (
-          <Price
-            props={props}
-            newClaim={newClaim}
-            price={price}
-            setPrice={setPrice}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <Price
+              props={props}
+              newClaim={newClaim}
+              price={price}
+              setPrice={setPrice}
+            />
+          </Grid>
         );
       case 6:
         return (
-          <PayInfo
-            props={props}
-            newClaim={newClaim}
-            payInfo={payInfo}
-            setPayInfo={setPayInfo}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <PayInfo
+              props={props}
+              newClaim={newClaim}
+              payInfo={payInfo}
+              setPayInfo={setPayInfo}
+            />
+          </Grid>
         );
       case 7:
         return (
-          <ClaimComplete
-            props={props}
-            handleSubmit={handleSubmit}
-            confirmationData={confirmationData}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <ClaimComplete
+              props={props}
+              handleSubmit={handleSubmit}
+              confirmationData={confirmationData}
+            />
+          </Grid>
         );
     }
   }
@@ -341,6 +400,7 @@ const NewClaimForm = props => {
                         direction="row"
                         justify="center"
                         alignItems="center"
+                        className={classes.grid}
                       >
                         <Button
                           disabled={activeStep === 0}
