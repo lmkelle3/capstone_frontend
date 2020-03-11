@@ -110,14 +110,14 @@ const TopNav = props => {
                     <ListItemText primary="Claims Center" />
                   </ListItem>
                 </Link>
-                <Link to="/messages" className={classes.link}>
+                {/* <Link to="/messages" className={classes.link}>
                   <ListItem button>
                     <ListItemIcon>
                       <MailIcon />
                     </ListItemIcon>
                     <ListItemText primary="Messages" />
                   </ListItem>
-                </Link>
+                </Link> */}
               </List>
               <Divider />
               {/* <List aria-label="secondary mailbox folders">

@@ -73,7 +73,7 @@ const Claim = props => {
   const handleDelete = e => {
     e.preventDefault();
     dispatch(deleteClaim(props.claim.id));
-    setUpdate([...update, props.match.params.id]);
+    setUpdate([...update, props.claim.id]);
   };
 
   const handleClick = claimId => {
