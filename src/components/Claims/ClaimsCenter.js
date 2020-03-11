@@ -12,8 +12,9 @@ import {
   Box
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import grey from "@material-ui/core/colors/grey";
 import RecipeReviewCard from "./CenterCard";
+import { indigo } from "@material-ui/core/colors";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
@@ -39,6 +40,9 @@ const useStyles = makeStyles(theme => ({
   grid: {
     marginTop: 150,
     marginBottom: 50
+  },
+  avatar: {
+    backgroundColor: indigo[500]
   }
 }));
 
@@ -51,7 +55,15 @@ const ClaimsCenter = props => {
       <Grid container>
         <Grid container direction="row">
           <Card className={classes.root}>
-            <CardHeader title="My Claims" subheader="September 14, 2016" />
+            <CardHeader
+              avatar={
+                <Avatar aria-label="recipe" className={classes.avatar}>
+                  O
+                </Avatar>
+              }
+              title="My Claims"
+              subheader="September 14, 2016"
+            />
             <ClaimsList />
           </Card>
           <Container maxWidth="lg" className={classes.container}>

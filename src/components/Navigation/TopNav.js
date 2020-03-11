@@ -138,7 +138,9 @@ const TopNav = props => {
         <Typography variant="h6" className={classes.title}>
           Oopsie-Daisy Insurance Co.
         </Typography>
-        <Button color="inherit">Login</Button>
+        <Button color="inherit" href="/login">
+          Login
+        </Button>
       </Toolbar>
     </AppBar>
   );
