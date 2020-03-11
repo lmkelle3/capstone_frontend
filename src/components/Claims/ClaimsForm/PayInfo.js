@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Typography, Grid } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
@@ -84,6 +84,9 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     color: theme.palette.secondary.light
+  },
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -129,33 +132,30 @@ const PayInfo = props => {
   const setPayInfo = props.setPayInfo;
 
   return (
-    <FormControl>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item>
-          <Typography variant="h5" component="h3">
-            Please select your preferred payment account.
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-select-native">
-              Payment Information
-            </InputLabel>
-            <NativeSelect
-              id="demo-customized-select-native"
-              name="lossType"
-              value={payInfo}
-              onChange={e => setPayInfo(e.target.value)}
-              input={<BootstrapInput />}
-            >
-              <option>Select One</option>
-              <option>Bank of Today</option>
-              <option>Bank of Tomorrow</option>
-            </NativeSelect>
-          </FormControl>
-        </Grid>
+    <Fragment>
+      <Grid item className={classes.grid}>
+        <Typography variant="h5" component="h3">
+          Please select your preferred payment account.
+        </Typography>
       </Grid>
-    </FormControl>
+      <FormControl className={classes.margin}>
+        <Grid item className={classes.grid}>
+          {/* <InputLabel htmlFor="demo-customized-select-native">
+            Payment Information
+          </InputLabel> */}
+          <NativeSelect
+            id="demo-customized-select-native"
+            name="lossType"
+            value={payInfo}
+            onChange={e => setPayInfo(e.target.value)}
+            input={<BootstrapInput />}
+          >
+            <option>Bank of Today</option>
+            <option>Bank of Tomorrow</option>
+          </NativeSelect>
+        </Grid>
+      </FormControl>
+    </Fragment>
   );
 };
 

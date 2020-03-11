@@ -1,5 +1,5 @@
 import "date-fns";
-import React from "react";
+import React, { Fragment } from "react";
 import clsx from "clsx";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
@@ -58,37 +58,8 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "#106ba3"
     }
   },
-  ///Form Styling
-  form: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1)
-    },
-    marginTop: 10
-  },
-  title: {
-    margin: theme.spacing(1)
-  },
-  address: {
-    margin: theme.spacing(1),
-    width: 350
-  },
-  details: {
-    width: 280
-  },
-  upBtn: {
-    marginLeft: 10
-  },
-  avatar: {
-    width: theme.spacing(6),
-    height: theme.spacing(6),
-    margin: theme.spacing(0.5)
-  },
-  avatarDiv: {
-    display: "flex",
-    padding: theme.spacing(1)
-  },
-  icon: {
-    color: theme.palette.secondary.light
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -107,7 +78,6 @@ const BootstrapInput = withStyles(theme => ({
     fontSize: 16,
     padding: "10px 26px 10px 12px",
     transition: theme.transitions.create(["border-color", "box-shadow"]),
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
       "-apple-system",
       "BlinkMacSystemFont",
@@ -158,12 +128,14 @@ const PoliceReport = props => {
   // const dispatch = useDispatch();
 
   return (
-    <FormControl>
-      <Grid container direction="row" justify="center" alignItems="center">
+    <Fragment>
+      <Grid item className={classes.grid}>
         <Typography variant="h5" component="h3">
           Please enter your police report details.
         </Typography>
-        <FormControl component="fieldset">
+      </Grid>
+      <FormControl component="fieldset">
+        <Grid item className={classes.grid}>
           <TextField
             required
             id="jurisdiction"
@@ -174,7 +146,8 @@ const PoliceReport = props => {
             className={classes.title}
             onChange={e => setJurisdiction(e.target.value)}
           />
-
+        </Grid>
+        <Grid item className={classes.grid}>
           <TextField
             required
             id="caseNumber"
@@ -184,23 +157,24 @@ const PoliceReport = props => {
             className={classes.address}
             onChange={e => setCaseNumber(e.target.value)}
           />
+        </Grid>
+        <Grid item className={classes.grid}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="space-around">
-              <KeyboardDatePicker
-                required
-                margin="normal"
-                id="date-picker-inline"
-                label="Report date"
-                format="MM/dd/yyyy"
-                value={reportDate}
-                onChange={setReportDate}
-                KeyboardButtonProps={{
-                  "aria-label": "change date"
-                }}
-              />
-            </Grid>
+            <KeyboardDatePicker
+              required
+              margin="normal"
+              id="date-picker-inline"
+              label="Report date"
+              format="MM/dd/yyyy"
+              value={reportDate}
+              onChange={setReportDate}
+              KeyboardButtonProps={{
+                "aria-label": "change date"
+              }}
+            />
           </MuiPickersUtilsProvider>
-
+        </Grid>
+        <Grid item className={classes.grid}>
           <RadioGroup
             defaultValue="false"
             aria-label="pr"
@@ -213,9 +187,9 @@ const PoliceReport = props => {
               onChange={e => setNoPr(e.target.value)}
             />
           </RadioGroup>
-        </FormControl>
-      </Grid>
-    </FormControl>
+        </Grid>
+      </FormControl>
+    </Fragment>
   );
 };
 

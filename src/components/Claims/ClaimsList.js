@@ -39,12 +39,12 @@ const ClaimsList = (state, props) => {
   return (
     <Fragment>
       <CssBaseline />
-      <Paper variant="outlined" elevation={3} className={classes.root}>
-        {/* <Paper>
+      {/* <Paper variant="outlined" elevation={3} className={classes.root}> */}
+      {/* <Paper>
           <Typography variant="h5">My Claims:</Typography>
         </Paper> */}
-        <List>{<Grid item>{listOfClaims}</Grid>}</List>
-      </Paper>
+      <List>{<Grid item>{listOfClaims}</Grid>}</List>
+      {/* </Paper> */}
     </Fragment>
   );
 };

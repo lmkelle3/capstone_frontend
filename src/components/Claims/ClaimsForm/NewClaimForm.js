@@ -98,6 +98,9 @@ const useStyles = makeStyles(theme => ({
   },
   fixedHeight: {
     height: 240
+  },
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -187,102 +190,158 @@ const NewClaimForm = props => {
     switch (currentStep) {
       case 0:
         return (
-          <LossInput
-            props={props}
-            lossCategory={lossCategory}
-            setLossCategory={setLossCategory}
-            lossType={lossType}
-            setLossType={setLossType}
-            claimDetails={claimDetails}
-            setClaimDetails={setClaimDetails}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <LossInput
+              props={props}
+              lossCategory={lossCategory}
+              setLossCategory={setLossCategory}
+              lossType={lossType}
+              setLossType={setLossType}
+              claimDetails={claimDetails}
+              setClaimDetails={setClaimDetails}
+            />
+          </Grid>
         );
       case 1:
         return (
-          <ClaimDate
-            props={props}
-            newClaim={newClaim}
-            claimDate={claimDate}
-            setClaimDate={setClaimDate}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <ClaimDate
+              props={props}
+              newClaim={newClaim}
+              claimDate={claimDate}
+              setClaimDate={setClaimDate}
+            />
+          </Grid>
         );
       case 2:
         return (
-          <PolicyType
-            props={props}
-            newClaim={newClaim}
-            policyType={policyType}
-            setPolicyType={setPolicyType}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <PolicyType
+              props={props}
+              newClaim={newClaim}
+              policyType={policyType}
+              setPolicyType={setPolicyType}
+            />
+          </Grid>
         );
       case 3:
         return (
-          <ItemType
-            props={props}
-            newClaim={newClaim}
-            scheduled={scheduled}
-            setScheduled={setScheduled}
-            unscheduled={unscheduled}
-            setUnscheduled={setUnscheduled}
-            other={other}
-            setOther={setOther}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <ItemType
+              props={props}
+              newClaim={newClaim}
+              scheduled={scheduled}
+              setScheduled={setScheduled}
+              unscheduled={unscheduled}
+              setUnscheduled={setUnscheduled}
+              other={other}
+              setOther={setOther}
+            />
+          </Grid>
         );
       case 4:
         return (
-          <PoliceReport
-            props={props}
-            newClaim={newClaim}
-            jurisdiction={jurisdiction}
-            setJurisdiction={setJurisdiction}
-            caseNumber={caseNumber}
-            setCaseNumber={setCaseNumber}
-            reportDate={reportDate}
-            setReportDate={setReportDate}
-            noPr={noPr}
-            setNoPr={setNoPr}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <PoliceReport
+              props={props}
+              newClaim={newClaim}
+              jurisdiction={jurisdiction}
+              setJurisdiction={setJurisdiction}
+              caseNumber={caseNumber}
+              setCaseNumber={setCaseNumber}
+              reportDate={reportDate}
+              setReportDate={setReportDate}
+              noPr={noPr}
+              setNoPr={setNoPr}
+            />
+          </Grid>
         );
       case 5:
         return (
-          <Price
-            props={props}
-            newClaim={newClaim}
-            price={price}
-            setPrice={setPrice}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <Price
+              props={props}
+              newClaim={newClaim}
+              price={price}
+              setPrice={setPrice}
+            />
+          </Grid>
         );
       case 6:
         return (
-          <PayInfo
-            props={props}
-            newClaim={newClaim}
-            payInfo={payInfo}
-            setPayInfo={setPayInfo}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <PayInfo
+              props={props}
+              newClaim={newClaim}
+              payInfo={payInfo}
+              setPayInfo={setPayInfo}
+            />
+          </Grid>
         );
       case 7:
         return (
-          <ClaimComplete
-            props={props}
-            handleSubmit={handleSubmit}
-            confirmationData={confirmationData}
-          />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <ClaimComplete
+              props={props}
+              handleSubmit={handleSubmit}
+              confirmationData={confirmationData}
+            />
+          </Grid>
         );
     }
   }
 
   /////Constants for tracking Steps/////
   const classes = useStyles();
-  const [currentStep, setStep] = useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
   const nextStep = () => {
-    setStep(currentStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const prevStep = () => {
-    setStep(currentStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   const handleSubmit = e => {
@@ -330,7 +389,7 @@ const NewClaimForm = props => {
         <Grid style={{ justifyContent: "center" }} container spacing={10}>
           <Grid item xs={11}>
             <Paper className={classes.paper}>
-              <Stepper currentStep={currentStep} alternativeLabel>
+              <Stepper activeStep={activeStep} alternativeLabel>
                 {steps.map(label => (
                   <Step key={label}>
                     <StepLabel>{label}</StepLabel>
@@ -338,12 +397,23 @@ const NewClaimForm = props => {
                 ))}
               </Stepper>
               <React.Fragment>
-                {currentStep === steps.length ? (
+                {activeStep === steps.length ? (
                   <React.Fragment>
-                    <Typography className={classes.instructions}>
-                      All steps completed
-                    </Typography>
-                    <Button color="primary" onClick={handleSubmit}>
+                    <Grid
+                      container
+                      direction="row"
+                      justify="center"
+                      alignItems="center"
+                    >
+                      <Typography variant="h5" className={classes.instructions}>
+                        All steps completed
+                      </Typography>
+                    </Grid>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      onClick={handleSubmit}
+                    >
                       Submit
                     </Button>
                   </React.Fragment>
@@ -356,7 +426,7 @@ const NewClaimForm = props => {
                       alignItems="center"
                     >
                       <Typography className={classes.instructions}>
-                        {formSteps(currentStep)}
+                        {formSteps(activeStep)}
                       </Typography>
                     </Grid>
                     <div>
@@ -365,9 +435,10 @@ const NewClaimForm = props => {
                         direction="row"
                         justify="center"
                         alignItems="center"
+                        className={classes.grid}
                       >
                         <Button
-                          disabled={currentStep === 0}
+                          disabled={activeStep === 0}
                           onClick={prevStep}
                           className={classes.backButton}
                         >
@@ -378,7 +449,7 @@ const NewClaimForm = props => {
                           color="primary"
                           onClick={nextStep}
                         >
-                          {currentStep === steps.length - 1 ? "Finish" : "Next"}
+                          {activeStep === steps.length - 1 ? "Finish" : "Next"}
                         </Button>
                       </Grid>
                     </div>
