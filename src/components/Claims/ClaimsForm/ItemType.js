@@ -9,8 +9,7 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 
-const useStyles = makeStyles(theme => ({
-  // ItemType Styling
+const useStyles = makeStyles({
   root: {
     "&:hover": {
       backgroundColor: "transparent"
@@ -52,42 +51,10 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: "#106ba3"
     }
   },
-  ///Form Styling
-  form: {
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1)
-    },
-    marginTop: 10
-  },
-  title: {
-    margin: theme.spacing(1)
-  },
-  address: {
-    margin: theme.spacing(1),
-    width: 350
-  },
-  details: {
-    width: 280
-  },
-  upBtn: {
-    marginLeft: 10
-  },
-  avatar: {
-    width: theme.spacing(6),
-    height: theme.spacing(6),
-    margin: theme.spacing(0.5)
-  },
-  avatarDiv: {
-    display: "flex",
-    padding: theme.spacing(1)
-  },
-  icon: {
-    color: theme.palette.secondary.light
-  },
   grid: {
     margin: "10px"
   }
-}));
+});
 
 ///function that styles the radio buttons
 function StyledRadio(props) {
@@ -120,35 +87,39 @@ const ItemType = props => {
           Please select the applicable item type.
         </Typography>
       </Grid>
-      <Grid item className={classes.grid}>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Personal Property:</FormLabel>
-          <RadioGroup
-            defaultValue="unscheduled"
-            aria-label="unscheduled"
-            name="customized-radios"
-          >
+      <FormControl component="fieldset">
+        <FormLabel component="legend">Property Type:</FormLabel>
+        <RadioGroup
+          defaultValue="unscheduled"
+          aria-label="unscheduled"
+          name="customized-radios"
+        >
+          <Grid item className={classes.grid}>
             <FormControlLabel
               value={unscheduled}
               control={<StyledRadio />}
-              label="Unscheduled"
+              label="unscheduled"
               onChange={e => setUnscheduled(e.target.value)}
             />
+          </Grid>
+          <Grid item className={classes.grid}>
             <FormControlLabel
               value={scheduled}
               control={<StyledRadio />}
-              label="Scheduled"
+              label="scheduled"
               onChange={e => setScheduled(e.target.value)}
             />
+          </Grid>
+          <Grid item className={classes.grid}>
             <FormControlLabel
               value={other}
               control={<StyledRadio />}
-              label="Other"
+              label="other"
               onChange={e => setOther(e.target.value)}
             />
-          </RadioGroup>
-        </FormControl>
-      </Grid>
+          </Grid>
+        </RadioGroup>
+      </FormControl>
     </Fragment>
   );
 };

@@ -375,10 +375,21 @@ const NewClaimForm = props => {
               <React.Fragment>
                 {activeStep === steps.length ? (
                   <React.Fragment>
-                    <Typography className={classes.instructions}>
-                      All steps completed
-                    </Typography>
-                    <Button color="primary" onClick={handleSubmit}>
+                    <Grid
+                      container
+                      direction="row"
+                      justify="center"
+                      alignItems="center"
+                    >
+                      <Typography variant="h5" className={classes.instructions}>
+                        All steps completed
+                      </Typography>
+                    </Grid>
+                    <Button
+                      color="primary"
+                      variant="contained"
+                      onClick={handleSubmit}
+                    >
                       Submit
                     </Button>
                   </React.Fragment>

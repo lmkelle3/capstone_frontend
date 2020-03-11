@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Box, Typography } from "@material-ui/core";
+import { Paper, Grid, Typography } from "@material-ui/core";
 import ExpansionPanel from "@material-ui/core/ExpansionPanel";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
@@ -18,6 +18,9 @@ const useStyles = makeStyles(theme => ({
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary
+  },
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -34,8 +37,10 @@ const ClaimComplete = (props, confirmationData) => {
 
   return (
     <Fragment>
-      <Paper>
-        <Typography variant="h4">Confirm Claim Details:</Typography>
+      <Paper className={classes.grid}>
+        <Grid item className={classes.grid}>
+          <Typography variant="h4">Confirm Claim Details:</Typography>
+        </Grid>
         <ExpansionPanel
           expanded={expanded === "panel1"}
           onChange={handleChange("panel1")}
