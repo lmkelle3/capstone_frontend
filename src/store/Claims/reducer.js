@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
       return state;
     case types.DELETE_CLAIM_SUCCESS:
       console.log("delete AP", action.payload);
-      return state.filter(claim => claim.id !== action.payload.id);
+      return state.filter(claim => claim.id !== action.payload);
     case types.DELETE_CLAIM_FAILED:
       return action.payload;
     case types.EDIT_CLAIM_PENDING:

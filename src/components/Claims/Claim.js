@@ -76,10 +76,6 @@ const Claim = props => {
     setUpdate([...update, props.claim.id]);
   };
 
-  const handleClick = claimId => {
-    dispatch(getOneClaim(claimId));
-  };
-
   if (props.claim && props.claim.id) {
     return (
       <Fragment className={classes.root}>
@@ -136,9 +132,7 @@ const Claim = props => {
             </Link>
 
             <Link to={`/claims/${props.claim.id}`}>
-              <Button onClick={() => handleClick(props.claim.id)}>
-                Go to Claim
-              </Button>
+              <Button>Go to Claim</Button>
             </Link>
             {/* <Link
               to={{ pathname: `/claims/${props.claim.id}` }}
@@ -173,4 +167,17 @@ const Claim = props => {
     );
   }
 };
-export default connect()(Claim);
+
+const mapStateToProps = (state, props) => {
+  if (props.match) {
+    return {
+      claim: state.claims.find(
+        claim => claim.id === Number(props.match.params.id)
+      )
+    };
+  } else {
+    return {};
+  }
+};
+
+export default connect(mapStateToProps)(Claim);

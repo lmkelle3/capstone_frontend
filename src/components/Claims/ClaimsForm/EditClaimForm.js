@@ -346,7 +346,26 @@ const EditClaimForm = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(editClaim(editedClaim.id));
+    dispatch(
+      editClaim({
+        id: Number(props.match.params.id),
+        user_id: 8,
+        lossCategory: lossCategory,
+        lossType: lossType,
+        claimDetails: claimDetails,
+        claimDate: claimDate,
+        policyType: policyType,
+        scheduled: scheduled,
+        unscheduled: unscheduled,
+        other: other,
+        jurisdiction: jurisdiction,
+        caseNumber: caseNumber,
+        reportDate: reportDate,
+        noPr: noPr,
+        price: Number(price),
+        payInfo: payInfo
+      })
+    );
   };
 
   const dispatch = useDispatch();

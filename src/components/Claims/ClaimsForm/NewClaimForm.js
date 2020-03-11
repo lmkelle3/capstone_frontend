@@ -345,11 +345,9 @@ const NewClaimForm = props => {
   };
 
   const handleSubmit = e => {
-    console.log("event", e);
     e.preventDefault();
 
     dispatch(addClaim(newClaim));
-    console.log("NewClaim", newClaim);
     history.push("/claims");
 
     // dispatch(addMessage(newMessage {

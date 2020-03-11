@@ -28,8 +28,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={Login} />
         <Route exact path="/claims/edit/:id" component={EditClaimForm} />
-        <Route exact path="/claims" component={ClaimsCenter} />
         <Route exact path="/claims/:id" component={Claim} />
+        <Route exact path="/claims" component={ClaimsCenter} />
         <Route exact path="/form" component={NewClaimForm} />
         {/* <Route exact path="/messages" component={MessageMain} /> */}
         {/* <Route exact path="/messageform" component={MessageForm} /> */}
