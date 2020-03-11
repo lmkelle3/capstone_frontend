@@ -139,9 +139,11 @@ const LossInput = props => {
 
   return (
     <React.Fragment>
-      <Typography variant="h5" component="h3">
-        Please enter your Loss Type and Description of your Loss.
-      </Typography>
+      <Grid item className={classes.grid}>
+        <Typography variant="h5" component="h3">
+          Please enter your Loss Type and Description of your Loss.
+        </Typography>
+      </Grid>
       <Grid item className={classes.grid}>
         <InputLabel>Loss Category</InputLabel>
         <NativeSelect

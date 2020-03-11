@@ -80,6 +80,9 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     color: theme.palette.secondary.light
+  },
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -125,27 +128,25 @@ const PolicyType = props => {
 
   return (
     <Fragment>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={12}>
-          <Typography variant="h5" component="h3">
-            Please select the applicable policy type.
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <InputLabel htmlFor="demo-customized-select-native">
-            Policy Type
-          </InputLabel>
-          <NativeSelect
-            id="demo-customized-select-native"
-            name="policyType"
-            value={policyType}
-            onChange={e => setPolicyType(e.target.value)}
-            input={<BootstrapInput />}
-          >
-            <option>Other</option>
-            <option>Valuable Personal Property</option>
-          </NativeSelect>
-        </Grid>
+      <Grid item className={classes.grid}>
+        <Typography variant="h5" component="h3">
+          Please select the applicable policy type.
+        </Typography>
+      </Grid>
+      <Grid item className={classes.grid}>
+        <InputLabel htmlFor="demo-customized-select-native">
+          Policy Type
+        </InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          name="policyType"
+          value={policyType}
+          onChange={e => setPolicyType(e.target.value)}
+          input={<BootstrapInput />}
+        >
+          <option>Other</option>
+          <option>Valuable Personal Property</option>
+        </NativeSelect>
       </Grid>
     </Fragment>
   );

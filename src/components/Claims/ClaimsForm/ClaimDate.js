@@ -1,5 +1,5 @@
 import "date-fns";
-import React from "react";
+import React, { Fragment } from "react";
 import { Typography, Grid } from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
@@ -7,17 +7,27 @@ import {
 } from "@material-ui/pickers";
 import FormControl from "@material-ui/core/FormControl";
 import DateFnsUtils from "@date-io/date-fns";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  grid: {
+    margin: "10px"
+  }
+}));
 
 const ClaimDate = props => {
   const claimDate = props.claimDate;
   const setClaimDate = props.setClaimDate;
+  const classes = useStyles();
 
   return (
-    <FormControl>
-      <Grid container direction="row" justify="center" alignItems="center">
+    <Fragment>
+      <Grid item className={classes.grid}>
         <Typography variant="h5" component="h3">
           Please select the approximate date that this occurred.
         </Typography>
+      </Grid>
+      <Grid item className={classes.grid}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <Grid container justify="space-around">
             <KeyboardDatePicker
@@ -35,7 +45,7 @@ const ClaimDate = props => {
           </Grid>
         </MuiPickersUtilsProvider>
       </Grid>
-    </FormControl>
+    </Fragment>
   );
 };
 export default ClaimDate;

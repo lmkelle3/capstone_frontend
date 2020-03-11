@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Typography, Grid } from "@material-ui/core";
 import FormControl from "@material-ui/core/FormControl";
 import { makeStyles } from "@material-ui/core/styles";
@@ -83,6 +83,9 @@ const useStyles = makeStyles(theme => ({
   },
   icon: {
     color: theme.palette.secondary.light
+  },
+  grid: {
+    margin: "10px"
   }
 }));
 
@@ -108,46 +111,45 @@ const ItemType = props => {
   const setUnscheduled = props.setUnscheduled;
   const other = props.other;
   const setOther = props.setOther;
+  const classes = useStyles();
 
   return (
-    <FormControl>
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Grid item xs={12}>
-          <Typography variant="h5" component="h3">
-            Please select the applicable item type.
-          </Typography>
-        </Grid>
-        <Grid item xs={12}>
-          <FormControl component="fieldset">
-            <FormLabel component="legend">Personal Property:</FormLabel>
-            <RadioGroup
-              defaultValue="unscheduled"
-              aria-label="unscheduled"
-              name="customized-radios"
-            >
-              <FormControlLabel
-                value={unscheduled}
-                control={<StyledRadio />}
-                label="Unscheduled"
-                onChange={e => setUnscheduled(e.target.value)}
-              />
-              <FormControlLabel
-                value={scheduled}
-                control={<StyledRadio />}
-                label="Scheduled"
-                onChange={e => setScheduled(e.target.value)}
-              />
-              <FormControlLabel
-                value={other}
-                control={<StyledRadio />}
-                label="Other"
-                onChange={e => setOther(e.target.value)}
-              />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
+    <Fragment>
+      <Grid item className={classes.grid}>
+        <Typography variant="h5" component="h3">
+          Please select the applicable item type.
+        </Typography>
       </Grid>
-    </FormControl>
+      <Grid item className={classes.grid}>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">Personal Property:</FormLabel>
+          <RadioGroup
+            defaultValue="unscheduled"
+            aria-label="unscheduled"
+            name="customized-radios"
+          >
+            <FormControlLabel
+              value={unscheduled}
+              control={<StyledRadio />}
+              label="Unscheduled"
+              onChange={e => setUnscheduled(e.target.value)}
+            />
+            <FormControlLabel
+              value={scheduled}
+              control={<StyledRadio />}
+              label="Scheduled"
+              onChange={e => setScheduled(e.target.value)}
+            />
+            <FormControlLabel
+              value={other}
+              control={<StyledRadio />}
+              label="Other"
+              onChange={e => setOther(e.target.value)}
+            />
+          </RadioGroup>
+        </FormControl>
+      </Grid>
+    </Fragment>
   );
 };
 
