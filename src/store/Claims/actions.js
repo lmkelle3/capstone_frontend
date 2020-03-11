@@ -68,6 +68,7 @@ export const deleteClaim = id => async dispatch => {
       type: types.DELETE_CLAIM_SUCCESS,
       payload: response.data
     });
+    console.log(response.data);
   } catch (err) {
     dispatch({
       type: types.DELETE_CLAIM_FAILED,
