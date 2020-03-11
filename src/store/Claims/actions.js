@@ -76,19 +76,20 @@ export const deleteClaim = id => async dispatch => {
   }
 };
 
-export const editClaim = (id, claim) => async dispatch => {
+export const editClaim = claim => async dispatch => {
   dispatch({
     type: types.EDIT_CLAIM_PENDING
   });
   try {
     let response = await axios.patch(
-      `http://localhost:8080/claims/${id}`,
+      `http://localhost:8080/claims/${claim.id}}`,
       claim
     );
     dispatch({
       type: types.EDIT_CLAIM_SUCCESS,
       payload: response.data
     });
+    console.log(response.data);
   } catch (err) {
     dispatch({
       type: types.EDIT_CLAIM_FAILED,

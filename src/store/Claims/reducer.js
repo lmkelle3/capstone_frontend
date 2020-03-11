@@ -9,8 +9,8 @@ export default (state = initialState, action) => {
     case types.GET_CLAIMS_FAILED:
       return action.payload;
     case types.GET_ONE_CLAIM_SUCCESS:
-      console.log("AP", action.payload[0].id);
-      return action.payload[0].id;
+      console.log("AP", action.payload);
+      return action.payload;
     case types.GET_ONE_CLAIM_FAILED:
       return action.payload;
     case types.ADD_CLAIM_SUCCESS:

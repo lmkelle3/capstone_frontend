@@ -11,9 +11,16 @@ import ExpansionPanelActions from "@material-ui/core/ExpansionPanelActions";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Chip from "@material-ui/core/Chip";
-import Button from "@material-ui/core/Button";
+import { Button } from "@material-ui/core";
 import Divider from "@material-ui/core/Divider";
-import { IconButton } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
+import { Link } from "react-router-dom";
+import {
+  IconButton,
+  ListItem,
+  ListItemIcon,
+  ListItemText
+} from "@material-ui/core";
 
 import { getOneClaim, deleteClaim } from "../../store/Claims/actions";
 
@@ -57,6 +64,7 @@ const useStyles = makeStyles(theme => ({
 const Claim = props => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [update, setUpdate] = useState([]);
 
   // const getOneClaim = id => {
   //   dispatch(getOneClaim(id));
@@ -65,9 +73,14 @@ const Claim = props => {
   const handleDelete = e => {
     e.preventDefault();
     dispatch(deleteClaim(props.claim.id));
+    setUpdate([...update, props.claim.id]);
   };
 
-  if (props.claim) {
+  const handleClick = claimId => {
+    dispatch(getOneClaim(claimId));
+  };
+
+  if (props.claim && props.claim.id) {
     return (
       <Fragment className={classes.root}>
         <ExpansionPanel>
@@ -108,15 +121,46 @@ const Claim = props => {
                 color="primary"
               />
             </IconButton>
-            <Button
+            <Link
+              to={{
+                pathname: `/claims/edit/${props.claim.id}`,
+                state: { claim: props.claim.id }
+              }}
+              className={classes.link}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <EditIcon />
+                </ListItemIcon>
+              </ListItem>
+            </Link>
+
+            <Link to={`/claims/${props.claim.id}`}>
+              <Button onClick={() => handleClick(props.claim.id)}>
+                Go to Claim
+              </Button>
+            </Link>
+            {/* <Link
+              to={{ pathname: `/claims/${props.claim.id}` }}
+              className={classes.link}
+            >
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleGetOne}
+              >
+                Go to Claim
+              </Button>
+            </Link> */}
+            {/* <Button
               component={Claim}
-              onClick={() => getOneClaim(props.claim.id)}
+              onClick={handleGetOne}
               size="small"
               variant="contained"
               color="primary"
             >
               Go to Claim
-            </Button>
+            </Button> */}
           </ExpansionPanelActions>
         </ExpansionPanel>
       </Fragment>

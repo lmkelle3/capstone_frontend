@@ -31,7 +31,7 @@ const ClaimsList = (state, props) => {
   const classes = useStyles();
   const claims = useSelector(state => state.claims);
 
-  console.log("Claims ID", claims);
+  console.log("Claims", claims);
   let listOfClaims = claims.map(claim => (
     <Claim claim={claim} key={claim.id} />
   ));
@@ -39,12 +39,7 @@ const ClaimsList = (state, props) => {
   return (
     <Fragment>
       <CssBaseline />
-      {/* <Paper variant="outlined" elevation={3} className={classes.root}> */}
-      {/* <Paper>
-          <Typography variant="h5">My Claims:</Typography>
-        </Paper> */}
       <List>{<Grid item>{listOfClaims}</Grid>}</List>
-      {/* </Paper> */}
     </Fragment>
   );
 };

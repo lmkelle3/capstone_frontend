@@ -5,8 +5,8 @@ import claimsReducer from "../store/Claims/reducer";
 import messagesReducer from "../store/Messages/reducer";
 
 const rootReducer = combineReducers({
-  claims: claimsReducer,
-  messages: messagesReducer
+  claims: claimsReducer
+  // messages: messagesReducer
 });
 
 const middleware = [thunk, logger];
