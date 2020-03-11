@@ -11,17 +11,25 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
-import { MenuList, MenuItem, Paper } from "@material-ui/core";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
+import {
+  MenuList,
+  MenuItem,
+  Paper,
+  ListItem,
+  ListItemIcon,
+  ListItemText
+} from "@material-ui/core";
+// import ListItem from "@material-ui/core/ListItem";
+// import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MailIcon from "@material-ui/icons/Mail";
 import HomeIcon from "@material-ui/icons/Home";
 import ListIcon from "@material-ui/icons/List";
 
 //Link Imports
-import { Link as RouterLink, MemoryRouter, Route } from "react-router-dom";
+// import { Link as RouterLink, MemoryRouter, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import ListItemText from "@material-ui/core/ListItemText";
+// import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,6 +50,10 @@ const useStyles = makeStyles(theme => ({
   },
   fullList: {
     width: "auto"
+  },
+  link: {
+    color: "black",
+    textDecoration: "none"
   }
 }));
 
@@ -62,33 +74,6 @@ const TopNav = props => {
     setState({ ...state, [side]: open });
   };
 
-  function ListItemLink(props) {
-    const { icon, primary, to } = props;
-
-    const renderLink = React.useMemo(
-      () =>
-        React.forwardRef((itemProps, ref) => (
-          <RouterLink to={to} ref={ref} {...itemProps} />
-        )),
-      [to]
-    );
-
-    return (
-      <li>
-        <ListItem button component={renderLink}>
-          {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
-          <ListItemText primary={primary} />
-        </ListItem>
-      </li>
-    );
-  }
-
-  ListItemLink.propTypes = {
-    icon: PropTypes.element,
-    primary: PropTypes.string.isRequired,
-    to: PropTypes.string.isRequired
-  };
-
   return (
     ///TopNav
     <AppBar className={classes.colorPrimary} position="static">
@@ -106,38 +91,40 @@ const TopNav = props => {
           <Drawer open={state.left} onClose={toggleDrawer("left", false)}>
             {/* {sideList("left")} */}
             {/* Navigation List */}
-            <MemoryRouter initialEntries={["/drafts"]} initialIndex={0}>
-              <div className={classes.root}>
-                <Route>
-                  {({ location }) => (
-                    <Typography gutterBottom>
-                      Current route: {location.pathname}
-                    </Typography>
-                  )}
-                </Route>
-                <Paper elevation={0}>
-                  <List aria-label="main mailbox folders">
-                    <ListItemLink to="/" primary="Login" icon={<HomeIcon />} />
-                    <ListItemLink
-                      to="/claims"
-                      primary="Claims"
-                      icon={<ListIcon />}
-                    />
-                    <ListItemLink
-                      to="/messages"
-                      primary="Messages"
-                      icon={<MailIcon />}
-                    />
-                  </List>
-                  <Divider />
-                  <List aria-label="secondary mailbox folders">
-                    <ListItemLink to="/trash" primary="Trash" />
-                    <ListItemLink to="/spam" primary="Spam" />
-                  </List>
-                </Paper>
-              </div>
-            </MemoryRouter>
-            ); }
+
+            <Paper elevation={0}>
+              <List aria-label="main mailbox folders">
+                <Link to="/" className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon>
+                      <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Login" />
+                  </ListItem>
+                </Link>
+                <Link to="/claims" className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon>
+                      <ListIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Claims Center" />
+                  </ListItem>
+                </Link>
+                <Link to="/messages" className={classes.link}>
+                  <ListItem button>
+                    <ListItemIcon>
+                      <MailIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Messages" />
+                  </ListItem>
+                </Link>
+              </List>
+              <Divider />
+              {/* <List aria-label="secondary mailbox folders">
+                <ListItemLink to="/trash" primary="Trash" />
+                <ListItemLink to="/spam" primary="Spam" />
+              </List> */}
+            </Paper>
           </Drawer>
         </IconButton>
         <Typography variant="h6" className={classes.title}>
