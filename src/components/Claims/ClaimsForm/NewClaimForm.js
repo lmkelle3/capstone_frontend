@@ -259,15 +259,15 @@ const NewClaimForm = props => {
 
   /////Constants for tracking Steps/////
   const classes = useStyles();
-  const [currentStep, setStep] = useState(0);
+  const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
   const nextStep = () => {
-    setStep(currentStep + 1);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const prevStep = () => {
-    setStep(currentStep - 1);
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
 
   const handleSubmit = e => {
@@ -306,7 +306,7 @@ const NewClaimForm = props => {
         <Grid style={{ justifyContent: "center" }} container spacing={10}>
           <Grid item xs={11}>
             <Paper className={classes.paper}>
-              <Stepper currentStep={currentStep} alternativeLabel>
+              <Stepper activeStep={activeStep} alternativeLabel>
                 {steps.map(label => (
                   <Step key={label}>
                     <StepLabel>{label}</StepLabel>
@@ -314,7 +314,7 @@ const NewClaimForm = props => {
                 ))}
               </Stepper>
               <React.Fragment>
-                {currentStep === steps.length ? (
+                {activeStep === steps.length ? (
                   <React.Fragment>
                     <Typography className={classes.instructions}>
                       All steps completed
@@ -332,7 +332,7 @@ const NewClaimForm = props => {
                       alignItems="center"
                     >
                       <Typography className={classes.instructions}>
-                        {formSteps(currentStep)}
+                        {formSteps(activeStep)}
                       </Typography>
                     </Grid>
                     <div>
@@ -343,7 +343,7 @@ const NewClaimForm = props => {
                         alignItems="center"
                       >
                         <Button
-                          disabled={currentStep === 0}
+                          disabled={activeStep === 0}
                           onClick={prevStep}
                           className={classes.backButton}
                         >
@@ -354,7 +354,7 @@ const NewClaimForm = props => {
                           color="primary"
                           onClick={nextStep}
                         >
-                          {currentStep === steps.length - 1 ? "Finish" : "Next"}
+                          {activeStep === steps.length - 1 ? "Finish" : "Next"}
                         </Button>
                       </Grid>
                     </div>
