@@ -154,8 +154,9 @@ const LossInput = props => {
               onChange={e => setLossCategory(e.target.value)}
               input={<BootstrapInput />}
             >
-              <option>Lost</option>
-              <option>Burglary/Theft</option>
+              <option>Select One</option>
+              <option>Jewelry</option>
+              <option>Other</option>
             </NativeSelect>
           </Box>
         </Grid>
@@ -170,7 +171,8 @@ const LossInput = props => {
             onChange={e => setLossType(e.target.value)}
             input={<BootstrapInput />}
           >
-            <option>Lost and not Found</option>
+            <option>Select One</option>
+            <option>Lost</option>
             <option>Theft</option>
           </NativeSelect>
         </Grid>

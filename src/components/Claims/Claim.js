@@ -90,18 +90,11 @@ const Claim = props => {
           <ExpansionPanelDetails className={classes.details}>
             <div className={classes.column} />
             <div className={classes.column}>
-              <Chip label="Barbados" onDelete={() => {}} />
+              <Chip label={props.claim.lossType} />
             </div>
             <div className={clsx(classes.column, classes.helper)}>
               <Typography variant="caption">
-                Select your destination of choice
-                <br />
-                <a
-                  href="#secondary-heading-and-columns"
-                  className={classes.link}
-                >
-                  Learn more
-                </a>
+                {props.claim.claimDetails}
               </Typography>
             </div>
           </ExpansionPanelDetails>
@@ -115,16 +108,15 @@ const Claim = props => {
                 color="primary"
               />
             </IconButton>
-            {/* <Button
-              // component={Claim}
-              // href={`/claims/${props.claim.id}`}
-              // onClick={() => getOneClaim()}
+            <Button
+              component={Claim}
+              onClick={() => getOneClaim(props.claim.id)}
               size="small"
               variant="contained"
               color="primary"
             >
               Go to Claim
-            </Button> */}
+            </Button>
           </ExpansionPanelActions>
         </ExpansionPanel>
       </Fragment>
