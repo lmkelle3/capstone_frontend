@@ -27,10 +27,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ClaimsList = () => {
+const ClaimsList = (state, props) => {
   const classes = useStyles();
   const claims = useSelector(state => state.claims);
 
+  console.log("Claims ID", claims);
   let listOfClaims = claims.map(claim => (
     <Claim claim={claim} key={claim.id} />
   ));

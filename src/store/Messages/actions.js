@@ -1,97 +1,97 @@
 import axios from "axios";
 import * as types from "./constants";
 
-export const getAllClaims = () => {
+export const getAllMessages = () => {
   return dispatch => {
     axios
-      .get("http://localhost:8080/claims")
+      .get("http://localhost:8080/messages")
       .then(res => {
         dispatch({
-          type: types.GET_CLAIMS_SUCCESS,
+          type: types.GET_MESSAGES_SUCCESS,
           payload: res.data
         });
       })
       .catch(err => {
         dispatch({
-          type: types.GET_CLAIMS_FAILED,
+          type: types.GET_MESSAGES_FAILED,
           payload: err
         });
       });
   };
 };
-export const getOneClaim = id => {
+export const getOneMessage = id => {
   return dispatch => {
     axios
-      .get(`http://localhost:8080/claims/${id}`)
+      .get(`http://localhost:8080/messages/${id}`)
       .then(res => {
         dispatch({
-          type: types.GET_ONE_CLAIM_SUCCESS,
+          type: types.GET_ONE_MESSAGE_SUCCESS,
           payload: res.data
         });
         console.log("payload", res.data);
       })
       .catch(err => {
         dispatch({
-          type: types.GET_ONE_CLAIM_FAILED,
+          type: types.GET_ONE_MESSAGE_FAILED,
           payload: err
         });
       });
   };
 };
-export const addClaim = claim => {
+export const addMessage = message => {
   return dispatch => {
     axios
-      .post(`http://localhost:8080/claims`, claim)
+      .post(`http://localhost:8080/messages`, message)
       .then(res => {
         dispatch({
-          type: types.ADD_CLAIM_SUCCESS,
+          type: types.ADD_MESSAGE_SUCCESS,
           payload: res.data
         });
         console.log("Payload", res.data);
       })
       .catch(err => {
         dispatch({
-          type: types.ADD_CLAIM_FAILED,
+          type: types.ADD_MESSAGE_FAILED,
           payload: err
         });
       });
   };
 };
 
-export const deleteClaim = id => async dispatch => {
+export const deleteMessage = id => async dispatch => {
   dispatch({
-    type: types.DELETE_CLAIM_PENDING
+    type: types.DELETE_MESSAGE_PENDING
   });
   try {
-    let response = await axios.delete(`http://localhost:8080/claims/${id}`);
+    let response = await axios.delete(`http://localhost:8080/messages/${id}`);
     dispatch({
-      type: types.DELETE_CLAIM_SUCCESS,
+      type: types.DELETE_MESSAGE_SUCCESS,
       payload: response.data
     });
   } catch (err) {
     dispatch({
-      type: types.DELETE_CLAIM_FAILED,
+      type: types.DELETE_MESSAGE_FAILED,
       payload: err
     });
   }
 };
 
-export const editClaim = (id, claim) => async dispatch => {
+export const editMessage = (id, message) => async dispatch => {
   dispatch({
-    type: types.EDIT_CLAIM_PENDING
+    type: types.EDIT_MESSAGE_PENDING
   });
   try {
     let response = await axios.patch(
-      `http://localhost:8080/claims/${id}`,
-      claim
+      `http://localhost:8080/messages/${id}`,
+      message
     );
     dispatch({
-      type: types.EDIT_CLAIM_SUCCESS,
+      type: types.EDIT_MESSAGE_SUCCESS,
       payload: response.data
     });
   } catch (err) {
     dispatch({
-      type: types.EDIT_CLAIM_FAILED,
+      type: types.EDIT_MESSAGE_FAILED,
       payload: err
     });
   }

@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SimpleBottomNavigation() {
+const BottomNav = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -34,4 +34,5 @@ export default function SimpleBottomNavigation() {
       </BottomNavigation>
     </Fragment>
   );
-}
+};
+export default BottomNav;

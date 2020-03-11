@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import ClaimsList from "./ClaimsList";
+import ClaimsLanding from "./ClaimsLanding";
+import MessageMain from "../ComCenter/MessageMain";
 import {
   Typography,
   Card,
@@ -48,6 +50,7 @@ const useStyles = makeStyles(theme => ({
 
 const ClaimsCenter = props => {
   const classes = useStyles();
+
   return (
     <Fragment>
       <CssBaseline />
@@ -102,6 +105,7 @@ const ClaimsCenter = props => {
             </Grid>
           </Container>
         </Grid>
+
       </Grid>
     </Fragment>
   );
