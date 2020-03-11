@@ -2,6 +2,9 @@ import React, { Fragment } from "react";
 import ClaimsList from "./ClaimsList";
 import {
   Typography,
+  Card,
+  Paper,
+  CardHeader,
   Button,
   Grid,
   Container,
@@ -9,6 +12,7 @@ import {
   Box
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import grey from "@material-ui/core/colors/grey";
 
 const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
@@ -20,6 +24,15 @@ const useStyles = makeStyles(theme => ({
   },
   container: {
     paddingBottom: theme.spacing(4)
+  },
+  root: {
+    width: 400,
+    height: 700,
+    marginLeft: 25
+  },
+  paper: {
+    height: 140,
+    width: 100
   }
 }));
 
@@ -30,7 +43,10 @@ const ClaimsCenter = props => {
       <CssBaseline />
       <div className={classes.appBarSpacer} />
       <Grid container direction="row">
-        <ClaimsList />
+        <Card className={classes.root}>
+          <CardHeader title="My Claims" subheader="September 14, 2016" />
+          <ClaimsList />
+        </Card>
         <Container maxWidth="lg" className={classes.container}>
           <Grid style={{ justifyContent: "center" }} container spacing={10}>
             <Box textAlign="center">
@@ -54,7 +70,17 @@ const ClaimsCenter = props => {
               File New Claim
             </Button>
           </Grid>
-          {/* <ClaimsList /> */}
+          <Grid item>
+            <Paper elevation={3} className={classes.paper}>
+              EYYY
+            </Paper>
+            <Paper elevation={3} className={classes.paper}>
+              WASSUP
+            </Paper>
+            <Paper elevation={3} className={classes.paper}>
+              HELLO
+            </Paper>
+          </Grid>
         </Container>
       </Grid>
     </Fragment>
