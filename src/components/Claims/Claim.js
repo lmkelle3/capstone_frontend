@@ -92,7 +92,7 @@ const Claim = props => {
             </div>
             <div className={classes.column}>
               <Typography className={classes.secondaryHeading}>
-                ${props.claim.price}
+                Payment: ${props.claim.price}
               </Typography>
             </div>
           </ExpansionPanelSummary>
