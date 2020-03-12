@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import ClaimsList from "./ClaimsList";
-import ClaimsLanding from "./ClaimsLanding";
 import MessageMain from "../ComCenter/MessageMain";
 import {
   Typography,
@@ -105,7 +104,6 @@ const ClaimsCenter = props => {
             </Grid>
           </Container>
         </Grid>
-
       </Grid>
     </Fragment>
   );
