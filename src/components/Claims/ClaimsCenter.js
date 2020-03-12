@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     width: 400,
-    height: 700,
+    height: 900,
     marginLeft: 25,
     marginBottom: 25
   },

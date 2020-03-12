@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ClaimComplete = props => {
-  // const confirmationData = props.confirmationData;
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const confirmationData = props.confirmationData;
@@ -57,9 +56,21 @@ const ClaimComplete = props => {
             <Typography className={classes.heading}>Loss Input</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{confirmationData.lossCategory}</Typography>
-            <Typography>{confirmationData.lossType}</Typography>
-            <Typography>{confirmationData.claimDetails}</Typography>
+            <Grid container direction="column">
+              <Grid item className={classes.grid}>
+                <Typography>
+                  Category: {confirmationData.lossCategory}
+                </Typography>
+              </Grid>
+              <Grid item className={classes.grid}>
+                <Typography>Loss Type: {confirmationData.lossType}</Typography>
+              </Grid>
+              <Grid item className={classes.grid}>
+                <Typography>
+                  Claim Details: {confirmationData.claimDetails}
+                </Typography>
+              </Grid>
+            </Grid>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
@@ -74,7 +85,7 @@ const ClaimComplete = props => {
             <Typography className={classes.heading}>Claim Date</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{claimDate}</Typography>
+            <Typography className={classes.grid}>Date: {claimDate}</Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
@@ -89,7 +100,10 @@ const ClaimComplete = props => {
             <Typography className={classes.heading}>Policy Type</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{confirmationData.policyType}</Typography>
+            <Typography className={classes.grid}>
+              Policy:
+              {confirmationData.policyType}
+            </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
@@ -104,9 +118,19 @@ const ClaimComplete = props => {
             <Typography className={classes.heading}>Item Type</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{confirmationData.scheduled}</Typography>
-            <Typography>{confirmationData.unscheduled}</Typography>
-            <Typography>{confirmationData.other}</Typography>
+            <Grid container direction="column">
+              <Grid item className={classes.grid}>
+                <Typography>Scheduled: {confirmationData.scheduled}</Typography>
+              </Grid>
+              <Grid item className={classes.grid}>
+                <Typography>
+                  Unscheduled: {confirmationData.unscheduled}
+                </Typography>
+              </Grid>
+              <Grid item className={classes.grid}>
+                <Typography>Other: {confirmationData.other}</Typography>
+              </Grid>
+            </Grid>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
@@ -121,10 +145,26 @@ const ClaimComplete = props => {
             <Typography className={classes.heading}>Police Report</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{confirmationData.jurisdiction}</Typography>
-            <Typography>{confirmationData.caseNumber}</Typography>
-            <Typography>{reportDate}</Typography>
-            <Typography>{confirmationData.noPr}</Typography>
+            <Grid container direction="column">
+              <Grid item className={classes.grid}>
+                <Typography>
+                  Jurisdiction: {confirmationData.jurisdiction}
+                </Typography>
+              </Grid>
+              <Grid item className={classes.grid}>
+                <Typography>
+                  Case Number: {confirmationData.caseNumber}
+                </Typography>
+              </Grid>
+              <Grid item className={classes.grid}>
+                <Typography>Report Date: {reportDate}</Typography>
+              </Grid>
+              <Grid item className={classes.grid}>
+                <Typography>
+                  I do not have a Police Report: {confirmationData.noPr}
+                </Typography>
+              </Grid>
+            </Grid>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
@@ -139,7 +179,9 @@ const ClaimComplete = props => {
             <Typography className={classes.heading}>Price</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{confirmationData.price}</Typography>
+            <Typography className={classes.grid}>
+              Claimed Value: {confirmationData.price}
+            </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
         <ExpansionPanel
@@ -156,7 +198,9 @@ const ClaimComplete = props => {
             </Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
-            <Typography>{confirmationData.payInfo}</Typography>
+            <Typography className={classes.grid}>
+              Bank: {confirmationData.payInfo}
+            </Typography>
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </Paper>

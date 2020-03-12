@@ -132,29 +132,10 @@ const Claim = props => {
             </Link>
 
             <Link to={`/claims/${props.claim.id}`}>
-              <Button>Go to Claim</Button>
-            </Link>
-            {/* <Link
-              to={{ pathname: `/claims/${props.claim.id}` }}
-              className={classes.link}
-            >
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleGetOne}
-              >
+              <Button variant="contained" color="primary">
                 Go to Claim
               </Button>
-            </Link> */}
-            {/* <Button
-              component={Claim}
-              onClick={handleGetOne}
-              size="small"
-              variant="contained"
-              color="primary"
-            >
-              Go to Claim
-            </Button> */}
+            </Link>
           </ExpansionPanelActions>
         </ExpansionPanel>
       </Fragment>

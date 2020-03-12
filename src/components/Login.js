@@ -29,7 +29,7 @@ const Login = () => {
     <Fragment className="container text-center mt-4">
       <CssBaseline />
       <div className={classes.appBarSpacer} />
-      <Container>
+      <Container className={classes.root}>
         <Paper elevation={3}>
           <Grid
             container
@@ -41,7 +41,6 @@ const Login = () => {
               <Typography variant="h5">Login</Typography>
             </Grid>
             <Grid item className={classes.grid}>
-
               <TextField
                 id="filled-required"
                 label="Email"
