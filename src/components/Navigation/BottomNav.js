@@ -9,7 +9,10 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 const useStyles = makeStyles(theme => ({
   appBarSpacer: theme.mixins.toolbar,
   root: {
-    width: 2000
+    display: "flex",
+    justifyContent: "center",
+    height: 56,
+    backgroundColor: theme.palette.background.paper
   }
 }));
 
